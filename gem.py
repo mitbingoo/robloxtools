@@ -192,4 +192,5 @@ def main():
         print("Goodbye!")
         exit()  # Quit the script
 
-main()
+if __name__ == "__main__":
+    main()
