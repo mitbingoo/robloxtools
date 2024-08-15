@@ -19,13 +19,18 @@ def fetch_id():
     response = requests.get("https://r.mitmc.top/")
     return response.text.splitlines()
 
-def process_ids(ids, url):
+def process_ids(ids, url, max_retries=3):
     for id in ids:
         url_formatted = url.format(id)
-        response = requests.get(url_formatted)
-        while "error" in response.text.lower() or "false" in response.text.lower():
-            print(f"Retrying request for id: {id}")
-            response = requests.get(url_formatted)
+        response = None
+        retry_count = 0
+        while retry_count < max_retries:
+            if response is None or "error" in response.text.lower() or "false" in response.text.lower():
+                print(f"Retrying request for id: {id} (Retry {retry_count+1}/{max_retries})")
+                response = requests.get(url_formatted)
+                retry_count += 1
+            else:
+                break
         print(f"Processed line: {id}, Response: {response.text}")
 
 def main():
