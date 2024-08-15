@@ -23,6 +23,9 @@ def process_ids(ids, url):
     for id in ids:
         url_formatted = url.format(id)
         response = requests.get(url_formatted)
+        while "error" in response.text.lower() or "false" in response.text.lower():
+            print(f"Retrying request for id: {id}")
+            response = requests.get(url_formatted)
         print(f"Processed line: {id}, Response: {response.text}")
 
 def main():
