@@ -2,7 +2,8 @@ repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Key = "2ad150246ca5437dae02c72a"
 getgenv().TargetUnitRoll = {
     "Admiral Of Lava",
-    "Muscular Sorcerer"
+    "Muscular Sorcerer",
+    "Master Swordsman"
 }
 getgenv().notRollUnitTarget = false
 getgenv().UseSavePosition = false
@@ -17,7 +18,7 @@ getgenv()["Auto Leave Infinite"] = {
     ["Wave"] = 31
 }
 getgenv().Portal = {
-    ["Enabled"] = false, 
+    ["Enabled"] = true, 
     ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
     ["Rarity Portal"] = {
         ["Rare"] = true,
