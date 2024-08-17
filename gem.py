@@ -125,7 +125,7 @@ def main():
     print("2: Trade Gem")
     print("3: Farm")
     print("4: Create Gem Folders")
-    print("5: Write txt files")
+    print("5: Update txt files")
     print("6: Reload")
     print("7: Quit")
     mode = int(input("Choose mode: "))
