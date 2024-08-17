@@ -9,22 +9,28 @@ def request_and_write(tools_path):
     mitbingo_file = os.path.join(tools_path, "gem2", "mitbingo.txt")
     mitbingo_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt"
     response = requests.get(mitbingo_url)
+    content = response.text.strip()
+    content = content.replace("\n\n", "\n")
     with open(mitbingo_file, 'w') as file:
-        file.write(response.text)
+        file.write(content)
 
     # Clear and write ['USERPROFILE'], "Downloads", "tools", "gemmain", "main.txt"
     main_file = os.path.join(tools_path, "gemmain", "main.txt")
     main_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt"
     response = requests.get(main_url)
-    with open(main_file, 'w') as file:
-        file.write(response.text)
+    content = response.text.strip()
+    content = content.replace("\n\n", "\n")
+    with open(mitbingo_file, 'w') as file:
+        file.write(content)
 
     # Clear and write ['USERPROFILE'], "Downloads", "tools", "autoexec", "farm.txt"
     farm_file = os.path.join(tools_path, "autoexec", "farm.txt")
     farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
     response = requests.get(farm_url)
-    with open(farm_file, 'w') as file:
-        file.write(response.text)
+    content = response.text.strip()
+    content = content.replace("\n\n", "\n")
+    with open(mitbingo_file, 'w') as file:
+        file.write(content)
 
 def clear_directory(path):
     if os.path.exists(path):
