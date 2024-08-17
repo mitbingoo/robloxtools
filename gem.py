@@ -70,26 +70,11 @@ def process_user_accounts(groups, tools_path):
             if user_index < len(lines) and user_index % 5 == 0:  # Every 5th line is considered as user
                 user = lines[user_index].strip()
                 user_file = os.path.join(user_folder, f"{user}.txt")
+                github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
+                response = requests.get(github_url)
+                script = response.text.replace("{user}", user)
                 with open(user_file, 'w') as uf:
-                    uf.write(f"""
-script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
-getgenv().SelectedPlayer = "{user}" -- Main Account/ Account To Send Gem
-getgenv().MainAccount = false --Set True if it's the account to receive gem, false if the account send gem
-getgenv().AccountForMainToFolow = ""
-getgenv().EnableAccountForMainFolow = false --If you want your main to join a low server player with an account already in server low player
-getgenv().MainAccountSetting = {{
-    Units = {{"Electric Cyborg","Magic Arrow","Cursed Archer","Legion Veteran"}},
-    ManuallyClaimBooth = false,
-}}
-getgenv().AltAccountSetting = {{
-    Trade = true,
-    NotSendGem = false,
-    TradeItems = {{"Trait Crystal","Risky Dice"}},
-    GiveBackUnit=true,
-    KickAfterDoneTrade=false,
-}}
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
-                    """)
+                    uf.write(script)
                 print(f"Created {user_file} for Group {group_number}")
             user_index += 1
 
