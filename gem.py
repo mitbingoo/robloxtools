@@ -12,7 +12,7 @@ def request_and_write(tools_path):
     with open(mitbingo_file, 'w') as file:
         file.write(response.text)
 
-    # Clear and write ['USERPROFILE'], "Downloads", "tools", "genmain", "main.txt"
+    # Clear and write ['USERPROFILE'], "Downloads", "tools", "gemmain", "main.txt"
     main_file = os.path.join(tools_path, "genmain", "main.txt")
     main_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt"
     response = requests.get(main_url)
@@ -201,7 +201,7 @@ def main():
 
     elif mode == 6:
         main()  # Call the main function again
-        
+
     elif mode == 7:
         print("Goodbye!")
         exit()  # Quit the script
