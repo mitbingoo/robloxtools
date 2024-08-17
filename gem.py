@@ -89,7 +89,7 @@ def create_gem_folders(groups, tools_path):
                 github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
                 response = requests.get(github_url)
                 response = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
-                response = response.text.replace("{user}", user)
+                response = response.replace("{user}", user)
                 with open(user_file, 'w') as uf:
                     uf.write(response)
                 print(f"Created {user_file} for Group {group_number}")
