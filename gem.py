@@ -71,11 +71,14 @@ def sort_groups(devices, group_size=5):
     return groups
 
 def create_gem_folders(groups, tools_path):
-    account_file = os.path.join(tools_path, "account.txt")
+    account_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/account.txt"
+    response = requests.get(account_url)
+    lines = response.content.decode('utf-8').splitlines()
 
-    with open(account_file, 'r') as file:
-        lines = file.readlines()
+    x = int(input("Enter the starting line number (x): "))
+    y = int(input("Enter the ending line number (y): "))
 
+    user_lines = lines[x-1:y]  # Adjust for 0-based indexing
     user_index = 0
 
     for group_number, group in enumerate(groups, start=1):
@@ -83,8 +86,8 @@ def create_gem_folders(groups, tools_path):
         clear_directory(user_folder)
         
         for _ in group:
-            if user_index < len(lines) and user_index % 5 == 0:  # Every 5th line is considered as user
-                user = lines[user_index].strip()
+            if user_index < len(user_lines) and user_index % 5 == 0:  # Every 5th line is considered as user
+                user = user_lines[user_index].strip()
                 user_file = os.path.join(user_folder, f"{user}.txt")
                 github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
                 response = requests.get(github_url)
