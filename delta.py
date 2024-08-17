@@ -2,7 +2,7 @@ import sys
 import subprocess
 import importlib
 import concurrent.futures
-version = "1.1"
+version = "1.1.1"
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
 
@@ -32,7 +32,7 @@ def process_id(id, url, max_retries=3):
             break
     print(f"Processed line: {id}, Response: {response.text}")
 
-def process_ids_concurrently(ids, url, max_workers=10):
+def process_ids_concurrently(ids, url, max_workers=20):
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_id, id, url) for id in ids]
         concurrent.futures.wait(futures)
