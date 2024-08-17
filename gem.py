@@ -3,6 +3,8 @@ import shutil
 import subprocess
 import argparse
 import json
+import sys
+
 
 def request_and_write(tools_path):
     # Clear and write ['USERPROFILE'], "Downloads", "tools", "gem2", "mitbingo.txt"
