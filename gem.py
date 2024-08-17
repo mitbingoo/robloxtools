@@ -54,7 +54,7 @@ def sort_groups(devices, group_size=5):
     return groups
 
 def create_gem_folders(groups, tools_path):
-    username_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/account.txt"
+    username_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/username.txt"
     response = requests.get(username_url)
     lines = response.content.decode('utf-8').splitlines()
 
