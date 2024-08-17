@@ -1,6 +1,6 @@
 
 script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
-getgenv().SelectedPlayer = "{user}}" -- Main Account/ Account To Send Gem
+getgenv().SelectedPlayer = "{user}" -- Main Account/ Account To Send Gem
 getgenv().MainAccount = false --Set True if it's the account to receive gem, false if the account send gem
 getgenv().AccountForMainToFolow = ""
 getgenv().EnableAccountForMainFolow = false --If you want your main to join a low server player with an account already in server low player
@@ -11,7 +11,7 @@ getgenv().MainAccountSetting = {
 getgenv().AltAccountSetting = {
     Trade = true,
     NotSendGem = false,
-    TradeItems = {"Trait Crystal","Risky Dice"},
+    TradeItems = {"Trait Crystal","Risky Dice","Frost Bind"},
     GiveBackUnit=true,
     KickAfterDoneTrade=false,
 }

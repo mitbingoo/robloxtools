@@ -11,7 +11,7 @@ getgenv().MainAccountSetting = {
 getgenv().AltAccountSetting = {
     Trade = true,
     NotSendGem = false,
-    TradeItems = {"Trait Crystal","Risky Dice"},
+    TradeItems = {"Trait Crystal","Risky Dice","Frost Bind"},
     GiveBackUnit=true,
     KickAfterDoneTrade=false,
 }
