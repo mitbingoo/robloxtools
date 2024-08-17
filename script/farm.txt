@@ -9,10 +9,10 @@ getgenv().UseSavePosition = false
 getgenv().GemRollUnit = 2500
 getgenv()["Black Screen"] = false
 getgenv()["Auto Leave Infinite"] = {
-    ["Auto Leave"] = false,
+    ["Auto Leave"] = true,
     ["Method"] = {
-        ["Sell"] = true,
-        ["Leave"] = false,
+        ["Sell"] = false,
+        ["Leave"] = true,
     },
     ["Wave"] = 31
 }
