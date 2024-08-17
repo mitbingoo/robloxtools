@@ -4,6 +4,16 @@ import subprocess
 import argparse
 import json
 import sys
+def install_requests():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+
+# Check if requests is installed, if not, install it
+try:
+    importlib.import_module("requests")
+except ImportError:
+    print("requests module not found. Installing...")
+    install_requests()
+import requests
 
 
 def request_and_write(tools_path):
@@ -111,11 +121,6 @@ def parse_arguments():
 
 
 def main():
-    try:
-        import requests
-    except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
-    
     args = parse_arguments()
 
     adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
