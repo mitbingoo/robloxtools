@@ -2,7 +2,7 @@ import sys
 import subprocess
 import importlib
 import concurrent.futures
-
+version = "1.1"
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
 
@@ -42,6 +42,10 @@ def main():
     "1": "https://shouko-api.neyoshiiuem.workers.dev/bypass?link=https://gateway.platoboost.com/a/8?id={}&api_key=mitbingoapikeyreal",
     "2": "https://stickx.top/api-delta/?hwid={}&api_key=E99l9NOctud3vmu6bPne"
     }
+
+    print(f"Delta v{version} - by @mitbingoo")
+    print("========================================================================================================")
+    print("Available APIs:")
 
     for api, url in apis.items():
         print(f"API: {api} - URL: {url}")
