@@ -120,6 +120,7 @@ def main():
         print(f"Group {group_number}: {', '.join(group)}")
 
     # Ask the user to choose between modes
+    print("======================================================================")
     print("Modes available:")
     print("1: Collect Gem")
     print("2: Trade Gem")
@@ -128,6 +129,7 @@ def main():
     print("5: Update txt files")
     print("6: Reload")
     print("7: Quit")
+    print("")
     mode = int(input("Choose mode: "))
 
     if mode == 1:
