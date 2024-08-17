@@ -15,10 +15,10 @@ def update_files(tools_path):
     # Update the files
     for file_path, url in files_to_update.items():
         response = requests.get(url)
-        content = response.text.strip()  # Strip newline characters
+        content = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
         with open(file_path, 'w') as file:
             file.write(content)
-        print(f"Finish updating {url}")
+        print(f"Finished updating {url}")
 
 def clear_directory(path):
     if os.path.exists(path):
