@@ -4,6 +4,28 @@ import subprocess
 import argparse
 import json
 
+def request_and_write(tools_path):
+    # Clear and write ['USERPROFILE'], "Downloads", "tools", "gem2", "mitbingo.txt"
+    mitbingo_file = os.path.join(tools_path, "gem2", "mitbingo.txt")
+    mitbingo_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt"
+    response = requests.get(mitbingo_url)
+    with open(mitbingo_file, 'w') as file:
+        file.write(response.text)
+
+    # Clear and write ['USERPROFILE'], "Downloads", "tools", "genmain", "main.txt"
+    main_file = os.path.join(tools_path, "genmain", "main.txt")
+    main_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt"
+    response = requests.get(main_url)
+    with open(main_file, 'w') as file:
+        file.write(response.text)
+
+    # Clear and write ['USERPROFILE'], "Downloads", "tools", "autoexec", "farm.txt"
+    farm_file = os.path.join(tools_path, "autoexec", "farm.txt")
+    farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
+    response = requests.get(farm_url)
+    with open(farm_file, 'w') as file:
+        file.write(response.text)
+
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
@@ -34,7 +56,7 @@ def adb_connect_and_copy(adb_path, device_identifier, src, dest):
         print(f"Failed to connect to {device_identifier}.")
         return False
 
-def get_available_adb_devices(adb_path):
+def get_available_devices(adb_path):
     adb_devices_command = f'"{adb_path}" devices'
     result = subprocess.run(adb_devices_command, shell=True, stdout=subprocess.PIPE)
     output = result.stdout.decode('utf-8').strip().splitlines()
@@ -54,7 +76,7 @@ def assign_groups(devices, group_size=5):
         groups.append(group)
     return groups
 
-def process_user_accounts(groups, tools_path):
+def create_gem_folders(groups, tools_path):
     account_file = os.path.join(tools_path, "account.txt")
 
     with open(account_file, 'r') as file:
@@ -87,6 +109,11 @@ def parse_arguments():
 
 
 def main():
+    try:
+        import requests
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+    
     args = parse_arguments()
 
     adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
@@ -97,7 +124,7 @@ def main():
     remote_autoexec_path = "/sdcard/Delta/Autoexecute/"
 
     # Get available adb devices
-    devices = get_available_adb_devices(adb_path)
+    devices = get_available_devices(adb_path)
 
     # Assign devices to groups
     groups = assign_groups(devices)
@@ -113,6 +140,9 @@ def main():
     print("5: Reload")
     print("6: Quit")
     mode = int(input("Choose mode: "))
+
+    # Clear and write files
+    request_and_write(tools_path)
 
     if mode == 1:
         for group_number, group in enumerate(groups, start=1):
@@ -169,7 +199,7 @@ def main():
         main()  # Call the main function again
 
     elif mode == 4:
-        process_user_accounts(groups, tools_path)
+        create_gem_folders(groups, tools_path)
         main()  # Call the main function again
     elif mode == 5:
         main()  # Call the main function again
