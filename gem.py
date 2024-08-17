@@ -113,15 +113,15 @@ def main():
 
     # Get available adb devices
     devices = get_available_devices(adb_path)
-    
-    print("======================================================================")
+
+    print("========================================================================================================")
     # Assign devices to groups
     groups = assign_groups(devices)
     for group_number, group in enumerate(groups, start=1):
         print(f"Group {group_number}: {', '.join(group)}")
 
     # Ask the user to choose between modes
-    print("======================================================================")
+    print("========================================================================================================")
     print("Modes available:")
     print("1: Collect Gem")
     print("2: Trade Gem")
