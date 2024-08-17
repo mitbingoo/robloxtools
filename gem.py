@@ -2,7 +2,6 @@ import os
 import shutil
 import subprocess
 import argparse
-import requests
 import json
 
 def request_and_write(tools_path):
@@ -110,6 +109,11 @@ def parse_arguments():
 
 
 def main():
+    try:
+        import requests
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+    
     args = parse_arguments()
 
     adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
