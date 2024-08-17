@@ -113,7 +113,8 @@ def main():
 
     # Get available adb devices
     devices = get_available_devices(adb_path)
-
+    
+    print("======================================================================")
     # Assign devices to groups
     groups = assign_groups(devices)
     for group_number, group in enumerate(groups, start=1):
