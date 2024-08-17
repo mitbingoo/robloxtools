@@ -17,6 +17,7 @@ def update_files(tools_path):
         response = requests.get(url)
         with open(file_path, 'w') as file:
             file.write(response.text)
+        print(f"Finish {url}")
 
 def clear_directory(path):
     if os.path.exists(path):
