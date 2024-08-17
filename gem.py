@@ -2,22 +2,6 @@ import os
 import shutil
 import subprocess
 import argparse
-import json
-import sys
-import importlib
-
-def install_requests():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
-
-# Check if requests is installed, if not, install it
-try:
-    importlib.import_module("requests")
-except ImportError:
-    print("requests module not found. Installing...")
-    install_requests()
-
-import requests
-
 
 def request_and_write(tools_path):
     # Clear and write ['USERPROFILE'], "Downloads", "tools", "gem2", "mitbingo.txt"
