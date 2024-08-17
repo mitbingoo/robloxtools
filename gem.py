@@ -4,7 +4,7 @@ import subprocess
 import argparse
 import requests
 
-version = 1.1
+version = 1.1.1
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -62,7 +62,6 @@ def create_gem_folders(tools_path):
 
     x = int(input("Enter the starting line number (x): "))
     y = int(input("Enter the ending line number (y): "))
-    
 
     username_lines = lines[x-1:y]  # Adjust for 0-based indexing
     num_groups = len(username_lines) // 5  # Calculate the number of groups
@@ -71,18 +70,17 @@ def create_gem_folders(tools_path):
         user_folder = os.path.join(tools_path, f"gem/Group{group_number}")
         clear_directory(user_folder)
         
-        for i in range(5):
-            user_index = (group_number - 1) * 5 + i
-            if user_index < len(username_lines):
-                user = username_lines[user_index].strip()
-                user_file = os.path.join(user_folder, f"{user}.txt")
-                github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
-                response = requests.get(github_url)
-                response = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
-                response = response.replace("{user}", user)
-                with open(user_file, 'w') as uf:
-                    uf.write(response)
-                print(f"Created {user_file} for Group {group_number}")
+        user_index = (group_number - 1) * 5
+        if user_index < len(username_lines):
+            user = username_lines[user_index].strip()
+            user_file = os.path.join(user_folder, f"{user}.txt")
+            github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
+            response = requests.get(github_url)
+            response = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
+            response = response.replace("{user}", user)
+            with open(user_file, 'w') as uf:
+                uf.write(response)
+            print(f"Created {user_file} for Group {group_number}")
 
 def update_files(tools_path):
     # Define the files to update
