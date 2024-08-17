@@ -4,33 +4,19 @@ import subprocess
 import argparse
 import requests
 
-def request_and_write(tools_path):
-    # Clear and write ['USERPROFILE'], "Downloads", "tools", "gem2", "mitbingo.txt"
-    mitbingo_file = os.path.join(tools_path, "gem2", "mitbingo.txt")
-    mitbingo_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt"
-    response = requests.get(mitbingo_url)
-    content = response.text.strip()
-    content = content.replace("\n\n", "\n")
-    with open(mitbingo_file, 'w') as file:
-        file.write(content)
+def update_files(tools_path):
+    # Define the files to update
+    files_to_update = {
+        os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
+        os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
+        os.path.join(tools_path, "autoexec", "farm.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
+    }
 
-    # Clear and write ['USERPROFILE'], "Downloads", "tools", "gemmain", "main.txt"
-    main_file = os.path.join(tools_path, "gemmain", "main.txt")
-    main_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt"
-    response = requests.get(main_url)
-    content = response.text.strip()
-    content = content.replace("\n\n", "\n")
-    with open(mitbingo_file, 'w') as file:
-        file.write(content)
-
-    # Clear and write ['USERPROFILE'], "Downloads", "tools", "autoexec", "farm.txt"
-    farm_file = os.path.join(tools_path, "autoexec", "farm.txt")
-    farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
-    response = requests.get(farm_url)
-    content = response.text.strip()
-    content = content.replace("\n\n", "\n")
-    with open(mitbingo_file, 'w') as file:
-        file.write(content)
+    # Update the files
+    for file_path, url in files_to_update.items():
+        response = requests.get(url)
+        with open(file_path, 'w') as file:
+            file.write(response.text)
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -202,7 +188,7 @@ def main():
         
     elif mode== 5:
         # Clear and write files
-        request_and_write(tools_path)
+        update_files(tools_path)
         main()
 
     elif mode == 6:
