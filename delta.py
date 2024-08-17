@@ -44,7 +44,7 @@ def main():
     }
 
     print(f"Delta v{version} - by @mitbingoo")
-    print("========================================================================================================")
+    print("==============================================")
     print("Available APIs:")
 
     for api, url in apis.items():

@@ -126,7 +126,7 @@ def main():
 
     # Ask the user to choose between modes
     print("========================================================================================================")
-    print(f"Version: {version}")
+    print(f"Gem Tools v{version} - by @mitbingoo")
     print("1: Collect Gem")
     print("2: Trade Gem")
     print("3: Farm")
