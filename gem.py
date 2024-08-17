@@ -1,10 +1,10 @@
-import importlib
 import os
 import shutil
 import subprocess
 import argparse
 import json
 import sys
+import importlib
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
