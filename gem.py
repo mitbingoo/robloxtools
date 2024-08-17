@@ -61,6 +61,8 @@ def create_gem_folders(groups, tools_path):
     x = int(input("Enter the starting line number (x): "))
     y = int(input("Enter the ending line number (y): "))
 
+    print{f"Readling from line {x} to line {y}"}
+
     username_lines = lines[x-1:y]  # Adjust for 0-based indexing
     user_index = 0
 
