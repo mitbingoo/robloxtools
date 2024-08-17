@@ -63,7 +63,7 @@ def get_available_devices(adb_path):
     
     return sorted(devices)  # Sort devices in ascending order
 
-def assign_groups(devices, group_size=5):
+def sort_groups(devices, group_size=5):
     groups = []
     for i in range(0, len(devices), group_size):
         group = devices[i:i + group_size]
@@ -117,7 +117,7 @@ def main():
 
     print("========================================================================================================")
     # Assign devices to groups
-    groups = assign_groups(devices)
+    groups = sort_groups(devices)
     for group_number, group in enumerate(groups, start=1):
         print(f"Group {group_number}: {', '.join(group)}")
 
