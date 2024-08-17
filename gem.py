@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import argparse
 import requests
-
 version = "1.1.1"
 
 def clear_directory(path):
