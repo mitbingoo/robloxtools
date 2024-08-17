@@ -4,27 +4,10 @@ import subprocess
 import argparse
 import requests
 
-def update_files(tools_path):
-    # Define the files to update
-    files_to_update = {
-        os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
-        os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
-        os.path.join(tools_path, "autoexec", "farm.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
-    }
-
-    # Update the files
-    for file_path, url in files_to_update.items():
-        response = requests.get(url)
-        content = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
-        with open(file_path, 'w') as file:
-            file.write(content)
-        print(f"Finished updating {url}")
-
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
     os.makedirs(path)
-
 
 def clear_remote_directory(adb_path, device_identifier, remote_path):
     adb_command = f'"{adb_path}" -s {device_identifier} shell "rm -rf {remote_path}/*"'
@@ -71,14 +54,14 @@ def sort_groups(devices, group_size=5):
     return groups
 
 def create_gem_folders(groups, tools_path):
-    account_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/username.txt"
-    response = requests.get(account_url)
+    username_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/account.txt"
+    response = requests.get(username_url)
     lines = response.content.decode('utf-8').splitlines()
 
     x = int(input("Enter the starting line number (x): "))
     y = int(input("Enter the ending line number (y): "))
 
-    user_lines = lines[x-1:y]  # Adjust for 0-based indexing
+    username_lines = lines[x-1:y]  # Adjust for 0-based indexing
     user_index = 0
 
     for group_number, group in enumerate(groups, start=1):
@@ -86,8 +69,8 @@ def create_gem_folders(groups, tools_path):
         clear_directory(user_folder)
         
         for _ in group:
-            if user_index < len(user_lines) and user_index % 5 == 0:  # Every 5th line is considered as user
-                user = user_lines[user_index].strip()
+            if user_index < len(username_lines) and user_index % 5 == 0:  # Every 5th line is considered as user
+                user = username_lines[user_index].strip()
                 user_file = os.path.join(user_folder, f"{user}.txt")
                 github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
                 response = requests.get(github_url)
@@ -97,6 +80,23 @@ def create_gem_folders(groups, tools_path):
                     uf.write(response)
                 print(f"Created {user_file} for Group {group_number}")
             user_index += 1
+
+def update_files(tools_path):
+    # Define the files to update
+    files_to_update = {
+        os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
+        os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
+        os.path.join(tools_path, "autoexec", "farm.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
+    }
+
+    # Update the files
+    for file_path, url in files_to_update.items():
+        response = requests.get(url)
+        content = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
+        with open(file_path, 'w') as file:
+            file.write(content)
+        print(f"Finished updating {url}")
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
