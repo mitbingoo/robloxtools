@@ -108,8 +108,10 @@ def parse_arguments():
 
 
 def main():
+    # Clear and write files
+    request_and_write(tools_path)
+    
     args = parse_arguments()
-
     adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
     tools_path = args.tools_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "tools")
     pictures_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Documents", "XuanZhi9", "Pictures", "autoexec")
@@ -134,9 +136,6 @@ def main():
     print("5: Reload")
     print("6: Quit")
     mode = int(input("Choose mode: "))
-
-    # Clear and write files
-    request_and_write(tools_path)
 
     if mode == 1:
         for group_number, group in enumerate(groups, start=1):
