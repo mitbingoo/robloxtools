@@ -4,6 +4,8 @@ import subprocess
 import argparse
 import requests
 
+version = 1.1
+
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
@@ -53,25 +55,25 @@ def sort_groups(devices, group_size=5):
         groups.append(group)
     return groups
 
-def create_gem_folders(groups, tools_path):
+def create_gem_folders(tools_path):
     username_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/username.txt"
     response = requests.get(username_url)
     lines = response.content.decode('utf-8').splitlines()
 
     x = int(input("Enter the starting line number (x): "))
     y = int(input("Enter the ending line number (y): "))
-
-    print(f"Readling from line {x} to line {y}")
+    
 
     username_lines = lines[x-1:y]  # Adjust for 0-based indexing
-    user_index = 0
+    num_groups = len(username_lines) // 5  # Calculate the number of groups
 
-    for group_number, group in enumerate(groups, start=1):
+    for group_number in range(1, num_groups + 1):
         user_folder = os.path.join(tools_path, f"gem/Group{group_number}")
         clear_directory(user_folder)
         
-        for _ in group:
-            if user_index < len(username_lines) and user_index % 5 == 0:  # Every 5th line is considered as user
+        for i in range(5):
+            user_index = (group_number - 1) * 5 + i
+            if user_index < len(username_lines):
                 user = username_lines[user_index].strip()
                 user_file = os.path.join(user_folder, f"{user}.txt")
                 github_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/gem.txt"
@@ -81,7 +83,6 @@ def create_gem_folders(groups, tools_path):
                 with open(user_file, 'w') as uf:
                     uf.write(response)
                 print(f"Created {user_file} for Group {group_number}")
-            user_index += 1
 
 def update_files(tools_path):
     # Define the files to update
@@ -128,7 +129,7 @@ def main():
 
     # Ask the user to choose between modes
     print("========================================================================================================")
-    print("Modes available:")
+    print(f"Version: {version}")
     print("1: Collect Gem")
     print("2: Trade Gem")
     print("3: Farm")
@@ -194,7 +195,7 @@ def main():
         main()  # Call the main function again
 
     elif mode == 4:
-        create_gem_folders(groups, tools_path)
+        create_gem_folders(tools_path)
         main()  # Call the main function again
         
     elif mode== 5:
