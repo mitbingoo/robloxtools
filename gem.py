@@ -129,7 +129,7 @@ def main():
     print("5: Update txt files")
     print("6: Reload")
     print("7: Quit")
-    print("")
+    print(" ")
     mode = int(input("Choose mode: "))
 
     if mode == 1:
