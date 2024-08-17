@@ -1,22 +1,29 @@
-import requests
+import subprocess
 import sys
+
+def install_request():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+
+try:
+    import requests
+except ImportError:
+    print("requests module not found. Installing...")
+    install_request()
+    import requests
 
 file = 'gem.py'
 url = f'https://raw.githubusercontent.com/mitbingoo/robloxtools/main/{file}'
 
 try:
-    # Fetch the content from the URL
     response = requests.get(url)
-    response.raise_for_status()  # Raise an exception for bad status codes
-    
-    # Get the code content
+    response.raise_for_status()
     code = response.text
     
-    # Execute the code
+    print(f"Successfully downloaded {file}")
+    print("Executing the script...")
+    
     exec(code)
-except requests.exceptions.RequestException as e:
-    print(f"Error fetching the code: {e}")
-    sys.exit(1)
+except requests.RequestException as e:
+    print(f"Error downloading the script: {e}")
 except Exception as e:
-    print(f"Error executing the code: {e}")
-    sys.exit(1)
+    print(f"Error executing the script: {e}")
