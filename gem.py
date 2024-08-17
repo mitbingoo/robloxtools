@@ -193,12 +193,15 @@ def main():
     elif mode == 4:
         create_gem_folders(groups, tools_path)
         main()  # Call the main function again
+        
     elif mode== 5:
         # Clear and write files
         request_and_write(tools_path)
         main()
+
     elif mode == 6:
         main()  # Call the main function again
+        
     elif mode == 7:
         print("Goodbye!")
         exit()  # Quit the script
