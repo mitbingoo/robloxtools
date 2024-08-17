@@ -5,6 +5,7 @@ import subprocess
 import argparse
 import json
 import sys
+
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
 
@@ -14,6 +15,7 @@ try:
 except ImportError:
     print("requests module not found. Installing...")
     install_requests()
+
 import requests
 
 
