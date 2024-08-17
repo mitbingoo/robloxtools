@@ -2,6 +2,7 @@ import os
 import shutil
 import subprocess
 import argparse
+import requests
 
 def request_and_write(tools_path):
     # Clear and write ['USERPROFILE'], "Downloads", "tools", "gem2", "mitbingo.txt"
@@ -107,10 +108,7 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def main():
-    # Clear and write files
-    request_and_write(tools_path)
-    
+def main():    
     args = parse_arguments()
     adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
     tools_path = args.tools_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "tools")
@@ -132,9 +130,10 @@ def main():
     print("1: Collect Gem")
     print("2: Trade Gem")
     print("3: Farm")
-    print("4: Create Folder")
-    print("5: Reload")
-    print("6: Quit")
+    print("4: Create Gem Folders")
+    print("5: Rewrite txt files")
+    print("6: Reload")
+    print("7: Quit")
     mode = int(input("Choose mode: "))
 
     if mode == 1:
@@ -194,9 +193,13 @@ def main():
     elif mode == 4:
         create_gem_folders(groups, tools_path)
         main()  # Call the main function again
-    elif mode == 5:
-        main()  # Call the main function again
+    elif mode== 5:
+        # Clear and write files
+        request_and_write(tools_path)
+        main()
     elif mode == 6:
+        main()  # Call the main function again
+    elif mode == 7:
         print("Goodbye!")
         exit()  # Quit the script
 
