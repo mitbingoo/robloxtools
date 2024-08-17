@@ -16,7 +16,7 @@ import requests
 import time
 
 def fetch_id():
-    response = requests.get("https://r.mitmc.top/")
+    response = requests.get("https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/userid.txt")
     return response.text.splitlines()
 
 def process_ids(ids, url, max_retries=3):
