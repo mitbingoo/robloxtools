@@ -3,7 +3,7 @@ import subprocess
 import importlib
 import concurrent.futures
 import time
-version = "1.2.5"
+version = "1.2.6"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -33,7 +33,6 @@ def process_id(id, url, max_retries=5):
                 break
         except requests.RequestException:
             pass
-        time.sleep(0)  # Add a small delay between retries
     
     result = response.text if response else "Failed to get response"
     if response and "error" not in response.text.lower() and "false" not in response.text.lower():
@@ -53,7 +52,6 @@ def process_ids_concurrently(ids, url, batch_size):
             for future in results.done:
                 id, result = future.result()
             print("==============================================")
-            time.sleep(0)  # Add a delay between batches to avoid overwhelming the server
 
 def main():
     apis = {
