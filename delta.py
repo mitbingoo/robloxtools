@@ -2,7 +2,7 @@ import sys
 import subprocess
 import importlib
 
-version = "1.0.1"
+version = "1.1.2"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
