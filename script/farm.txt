@@ -1,32 +1,42 @@
-script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
-getgenv().Setting = {
-    AutoSkipWave=true,
-    AutoClaimQuest = true,
-    CapFps = true,
-    FpsBoost = true,
-    WebhookUrl = "https://discord.com/api/webhooks/1258000991861735454/mKGPwY-ntt25X6JDVCcZduonogOTiinaH7IP-VGR7sxr6OE0rURmlO-I0CN-nUrl30vz",
-    OneClickNewSetting = { 
-        Enable = true,
-        Feed = true,
-        Leave=false,
-        AllChapter = false,
-        IgnoreEquipBest = false,
-        LeaveWave = true,
-        RequiredLevel = 20,
-        AllUnitsToGo = {"Admiral Of Lava","Strongest Swordsman","Master Swordsman"},
-        SnipeBannerUnits = {"Admiral Of Lava","Strongest Swordsman","Master Swordsman"}, --Snipe Unit Must Be In All Units To Use
-        TradingSnipe = false,
-        ForceInf = false, --Ignore Level, Unit
-        AnyUnitMythical_Secret = {
-            StartInfinite=true,
-            Feed=true,
-            IgnoreLevel = false
-        },
-        TradingSnipeUnits = {"Electric Cyborg"},
-        MaxGemUnit = 1000,
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Key = "2ad150246ca5437dae02c72a"
+getgenv().TargetUnitRoll = {
+    "Admiral Of Lava",
+    "Muscular Sorcerer"
+}
+getgenv().notRollUnitTarget = false
+getgenv().UseSavePosition = false
+getgenv().GemRollUnit = 2500
+getgenv()["Black Screen"] = true
+getgenv()["Auto Leave Infinite"] = {
+    ["Auto Leave"] = true,
+    ["Method"] = {
+        ["Sell"] = false,
+        ["Leave"] = true,
+    },
+    ["Wave"] = 31
+}
+getgenv().Portal = {
+    ["Enabled"] = false, 
+    ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
+    ["Rarity Portal"] = {
+        ["Rare"] = true,
+        ["Epic"] = true,
+        ["Legendary"] = false,
+        ["Mythical"] = false,
+    },
+    ["Unit"] = {
+        ["Use All Unit"] = true,
+        ["Custom Unit"] = {
+            "Admiral Of Lava",
+            "Muscular Sorcerer"
+        }
     },
 }
-if getgenv().Loaded  then
-    return 
-end
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/950b9999b1274e4d6f9fadc85fe2d77e.lua"))()
+getgenv().Webhook =  {
+    ["Webhook"] = true,
+    ["Url"] = "https://discord.com/api/webhooks/1258000991861735454/mKGPwY-ntt25X6JDVCcZduonogOTiinaH7IP-VGR7sxr6OE0rURmlO-I0CN-nUrl30vz",
+    ["Roll Unit"] = true,
+    ["Story/Infinite"] = true,
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()
