@@ -3,7 +3,7 @@ import subprocess
 import importlib
 import concurrent.futures
 import time
-version = "1.2.2"
+version = "1.2.3"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -38,10 +38,9 @@ def process_id(id, url, max_retries=5):
         time.sleep(1)  # Add a small delay between retries
     
     result = response.text if response else "Failed to get response"
-    print(f"Processed line: {id}, {result}")
     return id, result
 
-def process_ids_concurrently(ids, url, batch_size=10):
+def process_ids_concurrently(ids, url, batch_size):
     with concurrent.futures.ThreadPoolExecutor(max_workers=batch_size) as executor:
         for i in range(0, len(ids), batch_size):
             batch = ids[i:i+batch_size]
@@ -50,9 +49,7 @@ def process_ids_concurrently(ids, url, batch_size=10):
             
             for future in results.done:
                 id, result = future.result()
-                #PRINT print(f"Completed processing for id: {id}")
-            
-            #PRINT print(f"Batch of {len(batch)} requests completed.")
+            print{"=============================================="}
             time.sleep(2)  # Add a delay between batches to avoid overwhelming the server
 
 def main():
@@ -70,10 +67,21 @@ def main():
     api_mode = input("Choose API: ")
     url = apis[api_mode]
 
+    # Ask user for batch size
+    while True:
+        try:
+            batch_size = int(input("Enter the batch size (number of concurrent requests): "))
+            if batch_size > 0:
+                break
+            else:
+                print("Please enter a positive integer.")
+        except ValueError:
+            print("Invalid input. Please enter a positive integer.")
+
     while True:
         try:
             ids = fetch_id()
-            process_ids_concurrently(ids, url)
+            process_ids_concurrently(ids, url, batch_size)
         except Exception as e:
             print(f"An error occurred: {e}")
 
