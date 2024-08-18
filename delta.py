@@ -2,7 +2,8 @@ import sys
 import subprocess
 import importlib
 import concurrent.futures
-version = "1.2.0"
+import time
+version = "1.2.1"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -25,18 +26,34 @@ def process_id(id, url, max_retries=5):
     response = None
     retry_count = 0
     while retry_count < max_retries:
-        if response is None or "error" in response.text.lower() or "false" in response.text.lower():
-            print(f"Retrying request for id: {id} (Retry {retry_count+1}/{max_retries})")
+        try:
             response = requests.get(url_formatted)
+            if "error" not in response.text.lower() and "false" not in response.text.lower():
+                break
+            print(f"Retrying request for id: {id} (Retry {retry_count+1}/{max_retries})")
             retry_count += 1
-        else:
-            break
-    print(f"Processed line: {id}, Response: {response.text}")
+        except requests.RequestException:
+            print(f"Request failed for id: {id} (Retry {retry_count+1}/{max_retries})")
+            retry_count += 1
+        time.sleep(1)  # Add a small delay between retries
+    
+    result = response.text if response else "Failed to get response"
+    print(f"Processed line: {id}, Response: {result}")
+    return id, result
 
-def process_ids_concurrently(ids, url, max_workers=10):
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = [executor.submit(process_id, id, url) for id in ids]
-        concurrent.futures.wait(futures)
+def process_ids_concurrently(ids, url, batch_size=10):
+    with concurrent.futures.ThreadPoolExecutor(max_workers=batch_size) as executor:
+        for i in range(0, len(ids), batch_size):
+            batch = ids[i:i+batch_size]
+            futures = [executor.submit(process_id, id, url) for id in batch]
+            results = concurrent.futures.wait(futures, return_when=concurrent.futures.ALL_COMPLETED)
+            
+            for future in results.done:
+                id, result = future.result()
+                print(f"Completed processing for id: {id}")
+            
+            print(f"Batch of {len(batch)} requests completed.")
+            time.sleep(2)  # Add a delay between batches to avoid overwhelming the server
 
 def main():
     apis = {
