@@ -41,14 +41,14 @@ def main():
     "2": "https://stickx.top/api-delta/?hwid={}&api_key=E99l9NOctud3vmu6bPne"
     }
 
+    print(f"Delta v{version} - by @mitbingoo")
+    print("==============================================")
+    print("Available APIs:")
+
     for api, url in apis.items():
         print(f"API: {api} - URL: {url}")
     api_mode = input("Choose API: ")
     url = apis[api_mode]
-
-    print(f"Delta v{version} - by @mitbingoo")
-    print("==============================================")
-    print("Available APIs:")
 
     while True:
         try:
