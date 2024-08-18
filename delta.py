@@ -38,6 +38,7 @@ def process_id(id, url, max_retries=5):
         time.sleep(1)  # Add a small delay between retries
     
     result = response.text if response else "Failed to get response"
+    print(f"Processed line: {id}, {result}")
     return id, result
 
 def process_ids_concurrently(ids, url, batch_size):
