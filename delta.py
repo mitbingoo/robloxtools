@@ -3,7 +3,7 @@ import subprocess
 import importlib
 import concurrent.futures
 import time
-version = "1.2.4"
+version = "1.2.5"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -37,9 +37,9 @@ def process_id(id, url, max_retries=5):
     
     result = response.text if response else "Failed to get response"
     if response and "error" not in response.text.lower() and "false" not in response.text.lower():
-        print(f"Processed line: {id}, {result}")
+        print(f"Done: {id}")
     else:
-        print(f"Process failed: {id}, {result}")
+        print(f"Failed: {id}, {result}")
     sys.stdout.flush()
     return id, result
 
