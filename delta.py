@@ -3,7 +3,7 @@ import subprocess
 import importlib
 import concurrent.futures
 import time
-version = "1.2.2"
+version = "1.2.3"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -24,21 +24,23 @@ def fetch_id():
 def process_id(id, url, max_retries=5):
     url_formatted = url.format(id)
     response = None
-    retry_count = 0
-    while retry_count < max_retries:
+    for retry_count in range(max_retries):
+        print(f"Processing: {id} (Attempt {retry_count+1}/{max_retries})")
+        sys.stdout.flush()
         try:
             response = requests.get(url_formatted)
             if "error" not in response.text.lower() and "false" not in response.text.lower():
                 break
-            print(f"Processing: {id} (Attempt {retry_count+1}/{max_retries})")
-            retry_count += 1
         except requests.RequestException:
-            print(f"Processing: {id} (Attempt {retry_count+1}/{max_retries})")
-            retry_count += 1
+            pass
         time.sleep(1)  # Add a small delay between retries
     
     result = response.text if response else "Failed to get response"
-    print(f"Processed line: {id}, {result}")
+    if response and "error" not in response.text.lower() and "false" not in response.text.lower():
+        print(f"Processed line: {id}, {result}")
+    else:
+        print(f"Process failed: {id}, Response: {result}")
+    sys.stdout.flush()
     return id, result
 
 def process_ids_concurrently(ids, url, batch_size):
@@ -50,7 +52,7 @@ def process_ids_concurrently(ids, url, batch_size):
             
             for future in results.done:
                 id, result = future.result()
-            
+            print("==============================================")
             time.sleep(2)  # Add a delay between batches to avoid overwhelming the server
 
 def main():
