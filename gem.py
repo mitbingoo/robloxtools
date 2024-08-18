@@ -113,7 +113,7 @@ def main():
     pictures_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Documents", "XuanZhi9", "Pictures", "autoexec")
     
     remote_pictures_path = "/sdcard/Pictures/autoexec"
-    remote_autoexec_path = "/sdcard/Delta/Autoexecute/"
+    remote_autoexec_path = "/sdcard/Codex/Autoexec/"
 
     # Get available adb devices
     devices = get_available_devices(adb_path)
