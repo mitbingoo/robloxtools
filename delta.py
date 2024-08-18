@@ -1,8 +1,7 @@
 import sys
 import subprocess
 import importlib
-import concurrent.futures
-version = "1.1.1"
+
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
 
@@ -14,28 +13,25 @@ except ImportError:
     install_requests()
 
 import requests
+import time
 
 def fetch_id():
     response = requests.get("https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/userid.txt")
     return response.text.splitlines()
 
-def process_id(id, url, max_retries=3):
-    url_formatted = url.format(id)
-    response = None
-    retry_count = 0
-    while retry_count < max_retries:
-        if response is None or "error" in response.text.lower() or "false" in response.text.lower():
-            print(f"Retrying request for id: {id} (Retry {retry_count+1}/{max_retries})")
-            response = requests.get(url_formatted)
-            retry_count += 1
-        else:
-            break
-    print(f"Processed line: {id}, Response: {response.text}")
-
-def process_ids_concurrently(ids, url, max_workers=20):
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = [executor.submit(process_id, id, url) for id in ids]
-        concurrent.futures.wait(futures)
+def process_ids(ids, url, max_retries=3):
+    for id in ids:
+        url_formatted = url.format(id)
+        response = None
+        retry_count = 0
+        while retry_count < max_retries:
+            if response is None or "error" in response.text.lower() or "false" in response.text.lower():
+                print(f"Retrying request for id: {id} (Retry {retry_count+1}/{max_retries})")
+                response = requests.get(url_formatted)
+                retry_count += 1
+            else:
+                break
+        print(f"Processed line: {id}, Response: {response.text}")
 
 def main():
     apis = {
@@ -55,9 +51,10 @@ def main():
     while True:
         try:
             ids = fetch_id()
-            process_ids_concurrently(ids, url)
+            process_ids(ids, url)
         except Exception as e:
             print(f"An error occurred: {e}")
+        
 
 if __name__ == "__main__":
     main()
