@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.2.0"
+version = "1.2.1"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -113,7 +113,7 @@ def main():
     pictures_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Documents", "XuanZhi9", "Pictures", "autoexec")
     
     remote_pictures_path = "/sdcard/Pictures/autoexec"
-    remote_autoexec_path = "/sdcard/Codex/Autoexec/"
+    remote_autoexec_path = "/sdcard/Delta/Autoexecute/"
 
     # Get available adb devices
     devices = get_available_devices(adb_path)
