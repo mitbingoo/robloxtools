@@ -39,7 +39,7 @@ def process_id(id, url, max_retries=5):
     if response and "error" not in response.text.lower() and "false" not in response.text.lower():
         print(f"Processed line: {id}, {result}")
     else:
-        print(f"Process failed: {id}, Response: {result}")
+        print(f"Process failed: {id}, {result}")
     sys.stdout.flush()
     return id, result
 
