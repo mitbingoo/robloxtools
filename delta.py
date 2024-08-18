@@ -3,7 +3,7 @@ import subprocess
 import importlib
 import concurrent.futures
 import time
-version = "1.2.6"
+version = "1.2.7"
 
 def install_requests():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
@@ -21,7 +21,7 @@ def fetch_id():
     response = requests.get("https://raw.githubusercontent.com/mitbingoo/robloxtools/main/account/userid.txt")
     return response.text.splitlines()
 
-def process_id(id, url, max_retries=5):
+def process_id(id, url, max_retries):
     url_formatted = url.format(id)
     response = None
     for retry_count in range(max_retries):
@@ -42,11 +42,11 @@ def process_id(id, url, max_retries=5):
     sys.stdout.flush()
     return id, result
 
-def process_ids_concurrently(ids, url, batch_size):
+def process_ids_concurrently(ids, url, batch_size, max_retries):
     with concurrent.futures.ThreadPoolExecutor(max_workers=batch_size) as executor:
         for i in range(0, len(ids), batch_size):
             batch = ids[i:i+batch_size]
-            futures = [executor.submit(process_id, id, url) for id in batch]
+            futures = [executor.submit(process_id, id, url, max_retries) for id in batch]
             results = concurrent.futures.wait(futures, return_when=concurrent.futures.ALL_COMPLETED)
             
             for future in results.done:
@@ -78,11 +78,21 @@ def main():
                 print("Please enter a positive integer.")
         except ValueError:
             print("Invalid input. Please enter a positive integer.")
+    # Ask user for number of retries
+    while True:
+        try:
+            max_retries = int(input("Enter the maximum number of retries: "))
+            if max_retries > 0:
+                break
+            else:
+                print("Please enter a positive integer.")
+        except ValueError:
+            print("Invalid input. Please enter a positive integer.")        
 
     while True:
         try:
             ids = fetch_id()
-            process_ids_concurrently(ids, url, batch_size)
+            process_ids_concurrently(ids, url, batch_size, max_retries)
         except Exception as e:
             print(f"An error occurred: {e}")
 
