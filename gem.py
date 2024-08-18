@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.1.3"
+version = "1.2.0"
 
 def clear_directory(path):
     if os.path.exists(path):
