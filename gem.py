@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.2.3"
+version = "1.3.0"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -81,12 +81,13 @@ def create_gem_folders(tools_path):
                 uf.write(response)
             print(f"Created {user_file} for Group {group_number}")
 
-def update_files(tools_path):
+def update_files(tools_path, script_mode):
     # Define the files to update
+    farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt" if script_mode == 1 else "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm2.txt"
     files_to_update = {
         os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
         os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
-        os.path.join(tools_path, "autoexec", "farm.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt"
+        os.path.join(tools_path, "autoexec", "farm.txt"): farm_url
     }
 
     # Update the files
@@ -197,7 +198,11 @@ def main():
         
     elif mode== 5:
         # Clear and write files
-        update_files(tools_path)
+        print("Choose script mode:")
+        print("1: Use farm.txt")
+        print("2: Use farm2.txt")
+        script_mode = int(input("Enter script mode: "))
+        update_files(tools_path, script_mode)
         main()
 
     elif mode == 6:
