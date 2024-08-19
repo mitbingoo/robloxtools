@@ -2,7 +2,8 @@
 getgenv().Key = "2ad150246ca5437dae02c72a"
 getgenv().TargetUnitRoll = {
     "Jadefire Knight",
-    "Bloomer"
+    "Bloomer",
+    "Pink Rockstar"
 }
 getgenv().notRollUnitTarget = false
 getgenv().UseSavePosition = false
