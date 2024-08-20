@@ -1,0 +1,52 @@
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Key = "2ad150246ca5437dae02c72a"
+getgenv().TargetUnitRoll = {
+    "Bloomer"
+}
+
+getgenv().notRollUnitTarget = true
+getgenv().UseSavePosition = false
+getgenv().GemRollUnit = 20000
+getgenv()["Black Screen"] = false
+getgenv()["Auto Leave Infinite"] = {
+    ["Auto Leave"] = true,
+    ["Method"] = {
+        ["Sell"] = false,
+        ["Leave"] = true,
+    },
+    ["Wave"] = 31
+}
+getgenv().Auto_Equip = {
+    ["Equip Best"] = false,
+    ["Custom Equip"] = {
+        ["Enabled"] = true,
+        ["Units"] = {
+            "Jadefire Knight",
+            "Bloomer"
+        },
+    },
+}
+getgenv().Portal = {
+    ["Enabled"] = false, 
+    ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
+    ["Rarity Portal"] = {
+        ["Rare"] = true,
+        ["Epic"] = true,
+        ["Legendary"] = false,
+        ["Mythical"] = false,
+    },
+    ["Unit"] = {
+        ["Use All Unit"] = true,
+        ["Custom Unit"] = {
+            "Jadefire Knight",
+            "Bloomer"
+        }
+    },
+}
+getgenv().Webhook =  {
+    ["Webhook"] = false,
+    ["Url"] = "",
+    ["Roll Unit"] = true,
+    ["Story/Infinite"] = true,
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-KaitunAD.lua"))()

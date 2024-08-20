@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.3.0"
+version = "1.3.1"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -83,7 +83,12 @@ def create_gem_folders(tools_path):
 
 def update_files(tools_path, script_mode):
     # Define the files to update
-    farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt" if script_mode == 1 else "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm2.txt"
+        # Define the files to update
+    farm_url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm.txt" if script_mode == 1 else (
+        "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm2.txt" if script_mode == 2 else (
+            "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm3.txt" if script_mode == 3 else None
+        )
+    )
     files_to_update = {
         os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
         os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
