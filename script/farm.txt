@@ -1,14 +1,13 @@
-
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Key = "2ad150246ca5437dae02c72a"
 getgenv().TargetUnitRoll = {
-    "Jadefire Knight",
     "Bloomer",
-    "Pink Rockstar"
+    "Admiral Of Lava"
 }
 getgenv().notRollUnitTarget = false
 getgenv().UseSavePosition = false
 getgenv().GemRollUnit = 2500
-getgenv()["Black Screen"] = true
+getgenv()["Black Screen"] = false
 getgenv()["Auto Leave Infinite"] = {
     ["Auto Leave"] = true,
     ["Method"] = {
@@ -21,8 +20,8 @@ getgenv().Portal = {
     ["Enabled"] = false, 
     ["Name Portal"] = "Demon Portal", -- support only 3 portal lunar and Demon and Ancient Dragon
     ["Rarity Portal"] = {
-        ["Rare"] = false,
-        ["Epic"] = false,
+        ["Rare"] = true,
+        ["Epic"] = true,
         ["Legendary"] = false,
         ["Mythical"] = false,
     },
@@ -30,7 +29,6 @@ getgenv().Portal = {
         ["Use All Unit"] = true,
         ["Custom Unit"] = {
             "Admiral Of Lava",
-            "Muscular Sorcerer"
         }
     },
 }
