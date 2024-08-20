@@ -2,6 +2,7 @@ repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Key = "2ad150246ca5437dae02c72a"
 getgenv().TargetUnitRoll = {
     "Bloomer"
+    "Jadefire Knight"
 }
 
 getgenv().notRollUnitTarget = true
