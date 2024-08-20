@@ -20,7 +20,7 @@ getgenv().Setting = {
         ForceInf = false, --Ignore Level, Unit
         AnyUnitMythical_Secret = {
             StartInfinite=true,
-            Feed=true,
+            Feed=false,
             IgnoreLevel = false
         },
         TradingSnipeUnits = {"Electric Cyborg"},
