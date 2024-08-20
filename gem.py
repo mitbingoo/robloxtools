@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.3.2"
+version = "1.3.3"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -204,8 +204,7 @@ def main():
     elif mode== 5:
         # Clear and write files
         print("Choose script mode:")
-        print("1: Use farm.txt")
-        print("2: Use farm2.txt")
+        print("(X): Use farm(X).txt")
         script_mode = int(input("Enter script mode: "))
         update_files(tools_path, script_mode)
         main()
