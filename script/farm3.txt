@@ -44,8 +44,8 @@ getgenv().Portal = {
     },
 }
 getgenv().Webhook =  {
-    ["Webhook"] = false,
-    ["Url"] = "",
+    ["Webhook"] = true,
+    ["Url"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
     ["Roll Unit"] = true,
     ["Story/Infinite"] = true,
 }
