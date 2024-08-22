@@ -1,4 +1,4 @@
-getgenv().EquipMacroTroop = true
+getgenv().EquipMacroUnit = true
 getgenv().ImportMacro = {
     "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720464326729/a.json?ex=66c82896&is=66c6d716&hm=27ea323a1e59bc73842df63b85925843ed89ef05dceefbe44a90f833c640213f&",
     "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720917315616/wind.json?ex=66c82896&is=66c6d716&hm=f70f51b5120d8977baf3a3529593ba3a703a6af80b1352bc469f4ad7a6e334ad&",
