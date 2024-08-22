@@ -14,8 +14,8 @@ getgenv().Setting = {
         IgnoreEquipBest = true,
         LeaveWave = true,
         RequiredLevel = 20,
-        AllUnitsToGo = {},
-        SnipeBannerUnits = {}, --Snipe Unit Must Be In All Units To Use
+        AllUnitsToGo = {""},
+        SnipeBannerUnits = {""}, --Snipe Unit Must Be In All Units To Use
         TradingSnipe = false,
         ForceInf = false, --Ignore Level, Unit
         AnyUnitMythical_Secret = {
@@ -23,7 +23,7 @@ getgenv().Setting = {
             Feed=false,
             IgnoreLevel = false
         },
-        TradingSnipeUnits = {"Electric Cyborg"},
+        TradingSnipeUnits = {""},
         MaxGemUnit = 1000,
     },
 }
