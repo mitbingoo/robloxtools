@@ -1,33 +1,72 @@
-script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
-getgenv().Setting = {
-    AutoSkipWave=true,
-    AutoClaimQuest = true,
-    CapFps = true,
-    FpsBoost = true,
-    BlackScreen = true,
-    WebhookUrl = "https://discord.com/api/webhooks/1258000991861735454/mKGPwY-ntt25X6JDVCcZduonogOTiinaH7IP-VGR7sxr6OE0rURmlO-I0CN-nUrl30vz",
-    OneClickNewSetting = { 
-        Enable = true,
-        Feed = false,
-        Leave=false,
-        AllChapter = false,
-        IgnoreEquipBest = true,
-        LeaveWave = true,
-        RequiredLevel = 20,
-        AllUnitsToGo = {""},
-        SnipeBannerUnits = {""}, --Snipe Unit Must Be In All Units To Use
-        TradingSnipe = false,
-        ForceInf = false, --Ignore Level, Unit
-        AnyUnitMythical_Secret = {
-            StartInfinite=false,
-            Feed=false,
-            IgnoreLevel = false
-        },
-        TradingSnipeUnits = {""},
-        MaxGemUnit = 1000,
-    },
+getgenv().EquipMacroTroop = true
+getgenv().ImportMacro = {
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720464326729/a.json?ex=66c82896&is=66c6d716&hm=27ea323a1e59bc73842df63b85925843ed89ef05dceefbe44a90f833c640213f&",
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720917315616/wind.json?ex=66c82896&is=66c6d716&hm=f70f51b5120d8977baf3a3529593ba3a703a6af80b1352bc469f4ad7a6e334ad&",
 }
-if getgenv().Loaded  then
-    return 
-end
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/950b9999b1274e4d6f9fadc85fe2d77e.lua"))()
+getgenv().Config = {
+	["AutoSave"] = true,
+	["AutoFeedEquippedUnit"] = true,
+	["FeedLevel"] = 60,
+	["AutoJoinPortal"] = true,
+	["ItemPrice"] = 1,
+	["WH_MatchComplete"] = true,
+	["JoinerList"] = {
+		[1] = "No joiner in the list"
+	},
+	["AutoSummonStandard"] = true,
+	["SelectPortalMacro"] = {
+		["Demon Portal"] = "a"
+	},
+	["AutoLeave"] = true,
+	["LSImplosion"] = 100000,
+	["LSDelay"] = 0.4,
+	["FeedLevel"] = 1,
+	["WH_BannerSummoned"] = true,
+	["LeaveSellWave"] = 31,
+	["WHGemItemGotAlt"] = true,
+	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
+	["LSBomb"] = 1,
+	["RequiredGem"] = 3000,
+	["AutoClaimBattlePass"] = true,
+	["UnitPrice"] = 1,
+	["AutoSkip"] = true,
+	["AutoRejoin"] = true,
+	["AutoClaimQuest"] = true,
+	["TPLobbyIfPlayer"] = false,
+	["AutoDeleteUnit"] = true,
+	["IgnoreMacroTiming"] = true,
+	["SelectMacro"] = "wind",
+	["WH_BoothBought"] = true,
+	["AutoJoinWorld"] = true,
+	["PlayMacro"] = true,
+	["BlackScreen"] = true,
+	["ABBHopDelay"] = 0,
+	["JoinerCooldown"] = 0,
+	["SelectChapter"] = "Infinite",
+	["AutoReturnLobby"] = true,
+	["LSLoop"] = 2,
+	["PortalRarity"] = {
+		["Legendary"] = true,
+		["Epic"] = true,
+		["Rare"] = true,
+		["Mythic"] = false,
+		["Secret"] = false
+	},
+	["SelectWorld"] = "Windmill Village",
+	["SelectPortal"] = {
+		["Demon Portal"] = true
+	},
+	["SelectDeleteRarity"] = {
+		["Shiny Rare"] = true,
+		["Rare"] = true
+	},
+	["BoostFPS"] = true,
+	["DeleteMap"] = false,
+	["StandardSummonUnit"] = {
+		["Bloomer"] = false,
+		["Chief Of Lava"] = false,
+		["Pink Rockstar"] = false
+	}
+}
+getgenv().Key = "k501fa5a2a345a2e12e5b3bd"
+loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()
