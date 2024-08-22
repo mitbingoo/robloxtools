@@ -4,6 +4,13 @@ getgenv().ImportMacro = {
     "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720917315616/wind.json?ex=66c82896&is=66c6d716&hm=f70f51b5120d8977baf3a3529593ba3a703a6af80b1352bc469f4ad7a6e334ad&",
 }
 getgenv().Config = {
+	["PortalRarity"] = {
+		["Legendary"] = true,
+		["Epic"] = true,
+		["Rare"] = true,
+		["Mythic"] = false,
+		["Secret"] = false
+	},
 	["AutoSave"] = true,
 	["AutoFeedEquippedUnit"] = true,
 	["FeedLevel"] = 60,
@@ -45,13 +52,6 @@ getgenv().Config = {
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
-	["PortalRarity"] = {
-		["Legendary"] = true,
-		["Epic"] = true,
-		["Rare"] = true,
-		["Mythic"] = false,
-		["Secret"] = false
-	},
 	["SelectWorld"] = "Windmill Village",
 	["SelectPortal"] = {
 		["Demon Portal"] = true
