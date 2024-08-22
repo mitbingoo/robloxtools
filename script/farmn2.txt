@@ -2,6 +2,7 @@ getgenv().EquipMacroUnit = true
 getgenv().ImportMacro = {
     "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720464326729/a.json?ex=66c82896&is=66c6d716&hm=27ea323a1e59bc73842df63b85925843ed89ef05dceefbe44a90f833c640213f&",
     "https://cdn.discordapp.com/attachments/1276044373141880873/1276206898865246311/wind.json?ex=66c8afcb&is=66c75e4b&hm=fdf64a27fade7627258b2373398b7840c150a2c683f90f916e493d489af1dffa&",
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276213103499153408/b.json?ex=66c8b592&is=66c76412&hm=bcdcf62065d7166649f50b98564b0063fb05229b77754625b4f40eb1475778cb&",
 }
 getgenv().Config = {
 	["PortalRarity"] = {
@@ -12,8 +13,8 @@ getgenv().Config = {
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
-	["AutoFeedEquippedUnit"] = true,
-	["FeedLevel"] = 60,
+	["AutoFeedEquippedUnit"] = false,
+	["FeedLevel"] = 1,
 	["AutoJoinPortal"] = false,
 	["ItemPrice"] = 1,
 	["WH_MatchComplete"] = true,
@@ -42,19 +43,19 @@ getgenv().Config = {
 	["TPLobbyIfPlayer"] = false,
 	["AutoDeleteUnit"] = true,
 	["IgnoreMacroTiming"] = true,
-	["SelectMacro"] = "wind",
+	["SelectMacro"] = "b",
 	["WH_BoothBought"] = true,
 	["AutoJoinWorld"] = true,
 	["PlayMacro"] = true,
 	["BlackScreen"] = true,
 	["ABBHopDelay"] = 0,
-	["JoinerCooldown"] = 0,
+	["JoinerCooldown"] = 1,
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
 	["SelectWorld"] = "Windmill Village",
 	["SelectPortal"] = {
-		["Demon Portal"] = true
+		["Demon Portal"] = false
 	},
 	["SelectDeleteRarity"] = {
 		["Shiny Rare"] = true,
@@ -64,7 +65,7 @@ getgenv().Config = {
 	["DeleteMap"] = false,
 	["StandardSummonUnit"] = {
 		["Bloomer"] = false,
-		["Chief Of Lava"] = false,
+		["Chief Of Lava"] = true,
 		["Pink Rockstar"] = false
 	}
 }
