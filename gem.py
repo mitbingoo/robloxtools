@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.5.1"
+version = "1.5.2"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -222,5 +222,6 @@ def main():
 
                     # Clear and prepare the pictures_path on the computer
                     clear_directory(pictures_path)
+        main()  # Call the main function again
 if __name__ == "__main__":
     main()
