@@ -1,1 +1,34 @@
-t
+getgenv().Config = {
+	["AutoSave"] = true,
+	["ItemPrice"] = 5000,
+	["JoinerList"] = {
+		[1] = "No joiner in the list"
+	},
+	["AutoSell"] = true,
+	["LSImplosion"] = 100000,
+	["FeedLevel"] = 69,
+	["SelectBuyItem"] = "Risky Dice",
+	["LeaveSellWave"] = 1,
+	["ABBHopServer"] = true,
+	["LSBomb"] = 1,
+	["RequiredGem"] = 3000,
+	["AutoDeleteUnit"] = true,
+	["UnitPrice"] = 25000,
+	["SelectBuyUnit"] = "Muscular Sorcerer",
+	["SelectMacro"] = "b",
+	["LSDelay"] = 0.1,
+	["AutoDeleteItem"] = true,
+	["BoostFPS"] = true,
+	["ABBHopDelay"] = 0,
+	["JoinerCooldown"] = 0,
+	["LSLoop"] = 2,
+	["AutoSkip"] = true,
+	["BuyUnit"] = true,
+	["SelectDeleteRarity"] = {
+		["Shiny Rare"] = true
+	},
+	["DeleteMap"] = true,
+	["IgnoreMacroTiming"] = true,
+	["BuyItem"] = true,
+	["AutoBuyBooth"] = true
+}
