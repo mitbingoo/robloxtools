@@ -130,9 +130,9 @@ def main():
     # Ask the user to choose between modes
     print("========================================================================================================")
     print(f"Gem Tools v{version} - by @mitbingoo")
-    print("1: Collect Gem")
-    print("2: Trade Gem")
-    print("3: Farm")
+    print("1: Collect Gem Az")
+    print("2: Trade Gem Az")
+    print("3: Autoexec")
     print("4: Create Gem Folders")
     print("5: Update txt files")
     print("6: Reload")
