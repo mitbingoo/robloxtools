@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.5.2"
+version = "1.5.3"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -189,7 +189,7 @@ def main():
             # Copy files from Autoexec to pictures_path
             shutil.copytree(os.path.join(tools_path, "Autoexec"), pictures_path, dirs_exist_ok=True)
 
-            # Move files from remote_pictures_path to remote_autoexec_path
+            # Move files from@mai remote_pictures_path to remote_autoexec_path
             clear_remote_directory(adb_path, device, remote_autoexec_path)
             adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
         main()  # Call the main function again
@@ -214,14 +214,22 @@ def main():
         exit()  # Quit the script
 
     elif mode == 8:
-        emu_number = int(input("Enter emulator number: "))
-        for group_number, group in enumerate(groups, start=1):
-            for i, device in enumerate(group):
-                if i == emu_number - 1:  # Adjust for 0-based indexing
-                    print(f"Processing device {device} in Group {group_number}")
+        device_number = int(input("Enter the device number: "))
+        if device_number <= len(devices):
+            device = devices[device_number - 1]  # Adjust for 0-based indexing
+            print(f"Processing device {device}")
 
-                    # Clear and prepare the pictures_path on the computer
-                    clear_directory(pictures_path)
-        main()  # Call the main function again
+            # Clear and prepare the pictures_path on the computer
+            clear_directory(pictures_path)
+
+            # Copy files from Autoexec to pictures_path
+            shutil.copytree(os.path.join(tools_path, "Autoexec"), pictures_path, dirs_exist_ok=True)
+
+            # Move files from remote_pictures_path to remote_autoexec_path
+            clear_remote_directory(adb_path, device, remote_autoexec_path)
+            adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
+        else:
+            print("Invalid device number. Please try again.")
+        main()  # Call
 if __name__ == "__main__":
     main()
