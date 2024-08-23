@@ -213,5 +213,14 @@ def main():
         print("Goodbye!")
         exit()  # Quit the script
 
+    elif mode == 8:
+        emu_number = int(input("Enter emulator number: "))
+        for group_number, group in enumerate(groups, start=1):
+        for i, device in enumerate(group):
+            if i == emu_number - 1:  # Adjust for 0-based indexing
+                print(f"Processing device {device} in Group {group_number}")
+
+                # Clear and prepare the pictures_path on the computer
+                clear_directory(pictures_path)
 if __name__ == "__main__":
     main()
