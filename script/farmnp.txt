@@ -1,8 +1,8 @@
 getgenv().EquipMacroUnit = true
 getgenv().ImportMacro = {
-    "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720464326729/a.json?ex=66c82896&is=66c6d716&hm=27ea323a1e59bc73842df63b85925843ed89ef05dceefbe44a90f833c640213f&",
-    "https://cdn.discordapp.com/attachments/1276044373141880873/1276206898865246311/wind.json?ex=66c8afcb&is=66c75e4b&hm=fdf64a27fade7627258b2373398b7840c150a2c683f90f916e493d489af1dffa&",
-    "https://cdn.discordapp.com/attachments/1276044373141880873/1276213103499153408/b.json?ex=66c8b592&is=66c76412&hm=bcdcf62065d7166649f50b98564b0063fb05229b77754625b4f40eb1475778cb&",
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276061720464326729/a.json?ex=66c97a16&is=66c82896&hm=db54805b55483ae9ee4b9e48452d30e905d052a88512aa587ab3494218a9bcdd&",
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276206898865246311/wind.json?ex=66ca014b&is=66c8afcb&hm=bbccbb6c78b73d1d388ed33459035f17b06ed28308790617e8daadadb394acc7&",
+    "https://cdn.discordapp.com/attachments/1276044373141880873/1276213103499153408/b.json?ex=66ca0712&is=66c8b592&hm=cd04e68bfe0b76aea8c2c690e236e2a0a4e893b55e17810ea47bba26326bded3&",
 }
 getgenv().Config = {
 	["PortalRarity"] = {
