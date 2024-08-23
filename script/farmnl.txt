@@ -6,7 +6,7 @@ getgenv().ImportMacro = {
 }
 getgenv().Config = {
 	["PortalRarity"] = {
-		["Legendary"] = true,
+		["Legendary"] = false,
 		["Epic"] = true,
 		["Rare"] = true,
 		["Mythic"] = false,
