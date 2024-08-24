@@ -56,7 +56,7 @@ def process_ids_concurrently(ids, url, batch_size, max_retries):
 def main():
     apis = {
     "1": "https://shouko-api.neyoshiiuem.workers.dev/bypass?link=https://gateway.platoboost.com/a/8?id={}&api_key=mitbingoapikeyreal",
-    "2": "https://stickx.top/api-delta/?hwid={}&api_key=E99l9NOctud3vmu6bPne"
+    "2": "https://stickx.top/api-delta/?hwid={}&api_key=E99l9NOctud3vmu6bPne",
     "3": "http://103.176.24.132:9000/delta/bypass?link=https://gateway.platoboost.com/a/8?id={}"
     }
 
