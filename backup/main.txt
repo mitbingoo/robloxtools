@@ -1,0 +1,19 @@
+
+script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
+getgenv().SelectedPlayer = "" -- Main Account/ Account To Send Gem
+getgenv().MainAccount = true --Set True if it's the account to receive gem, false if the account send gem
+getgenv().AccountForMainToFolow = ""
+getgenv().EnableAccountForMainFolow = false --If you want your main to join a low server player with an account already in server low player
+getgenv().MainAccountSetting = {
+    Units = {"Electric Cyborg","Magic Arrow","Cursed Archer","Legion Veteran"},
+    ManuallyClaimBooth = false,
+}
+getgenv().AltAccountSetting = {
+    Trade = true,
+    NotSendGem = false,
+    TradeItems = {"Trait Crystal","Risky Dice","Frost Bind"},
+    GiveBackUnit=true,
+    KickAfterDoneTrade=false,
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
+                    
