@@ -9,7 +9,7 @@ getgenv().Config = {
 		["Legendary"] = false,
 		["Epic"] = false,
 		["Rare"] = true,
-		["Mythic"] = true,
+		["Mythic"] = false,
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
