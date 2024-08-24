@@ -5,6 +5,9 @@ getgenv().Config = {
 		[1] = "No joiner in the list"
 	},
 	["AutoSell"] = true,
+	["StandardSummonUnit"] = {
+		["Bloomer"] = true,
+	}
 	["LSImplosion"] = 100000,
 	["FeedLevel"] = 69,
 	["SelectBuyItem"] = "Risky Dice",
@@ -25,7 +28,13 @@ getgenv().Config = {
 	["AutoSkip"] = true,
 	["BuyUnit"] = true,
 	["SelectDeleteRarity"] = {
-		["Shiny Rare"] = true
+		["Legendary"] = true,
+		["Shiny Epic"] = false,
+		["Epic"] = true,
+		["Mythic"] = false,
+		["Shiny Rare"] = true,
+		["Shiny Legendary"] = true,
+		["Rare"] = true
 	},
 	["DeleteMap"] = true,
 	["IgnoreMacroTiming"] = true,
