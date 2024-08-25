@@ -8,11 +8,12 @@ getgenv().Config = {
 	["PortalRarity"] = {
 		["Legendary"] = false,
 		["Epic"] = false,
-		["Rare"] = false,
+		["Rare"] = true,
 		["Mythic"] = false,
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
+	["UnselectIfSummoned"] = true,
 	["AutoFeedEquippedUnit"] = false,
 	["FeedLevel"] = 1,
 	["AutoJoinPortal"] = false,
@@ -29,7 +30,6 @@ getgenv().Config = {
 	["LSImplosion"] = 100000,
 	["LSDelay"] = 0.4,
 	["WH_BannerSummoned"] = true,
-	["AutoSell"] = false,
 	["LeaveSellWave"] = 31,
 	["WHGemItemGotAlt"] = true,
 	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
@@ -55,7 +55,7 @@ getgenv().Config = {
 	["LSLoop"] = 2,
 	["SelectWorld"] = "Windmill Village",
 	["SelectPortal"] = {
-		["Demon Portal"] = true
+		["Demon Portal"] = false
 	},
 	["SelectDeleteRarity"] = {
 		["Shiny Rare"] = true,
@@ -68,7 +68,6 @@ getgenv().Config = {
 		["Chief Of Lava"] = false,
 		["Pink Rockstar"] = false
 	}
-	["UnselectIfSummoned"] = true,
 }
 getgenv().Key = "k501fa5a2a345a2e12e5b3bd"
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until Joebiden
