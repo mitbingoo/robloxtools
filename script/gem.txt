@@ -1,30 +1,19 @@
-getgenv().Config = {
-	["ItemPrice"] = 1,
-	["JoinerList"] = {
-		[1] = "No joiner in the list"
-	},
-	["AutoTradeItem"] = true,
-	["FeedLevel"] = 69,
-	["LeaveSellWave"] = 1,
-	["LSBomb"] = 1,
-	["RequiredGem"] = 20000,
-	["ReceiverAccount2"] = "{user}",
-	["UnitPrice"] = 1,
-	["LSImplosion"] = 100000,
-	["ABBHopDelay"] = 0,
-	["LSLoop"] = 2,
-	["LimitedUnit"] = {
-		["Electric Cyborg"] = true,
-		["Legion Veteran (Max)"] = true,
-		["Cursed Archer"] = true
-	},
-	["ReceiverAccount"] = "{user}",
-	["JoinerCooldown"] = 0,
-	["TradeItem"] = {
-		["Frost Bind"] = true,
-		["Risky Dice"] = true,
-		["Trait Crystal"] = true
-	},
-	["LSDelay"] = 0.4
+
+script_key = "QMKKXoHwwRIdkQQEDnKkCUhqYkaqUwgx"
+getgenv().SelectedPlayer = "{user}" -- Main Account/ Account To Send Gem
+getgenv().MainAccount = false --Set True if it's the account to receive gem, false if the account send gem
+getgenv().AccountForMainToFolow = ""
+getgenv().EnableAccountForMainFolow = false --If you want your main to join a low server player with an account already in server low player
+getgenv().MainAccountSetting = {
+    Units = {"Electric Cyborg","Magic Arrow","Cursed Archer","Legion Veteran"},
+    ManuallyClaimBooth = false,
 }
-repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until Joebiden
+getgenv().AltAccountSetting = {
+    Trade = true,
+    NotSendGem = false,
+    TradeItems = {"Trait Crystal","Risky Dice","Frost Bind"},
+    GiveBackUnit=true,
+    KickAfterDoneTrade=false,
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
+                    
