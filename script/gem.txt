@@ -3,11 +3,12 @@ getgenv().Config = {
 	["JoinerList"] = {
 		[1] = "No joiner in the list"
 	},
-	["AutoTradeItem"] = true,
+	["AutoTradeItem"] = false,
+	["AutoTransferGem"] = true,
 	["FeedLevel"] = 69,
 	["LeaveSellWave"] = 1,
 	["LSBomb"] = 1,
-	["RequiredGem"] = 20000,
+	["RequiredGem"] = 200,
 	["ReceiverAccount2"] = "{user}",
 	["UnitPrice"] = 1,
 	["LSImplosion"] = 100000,
