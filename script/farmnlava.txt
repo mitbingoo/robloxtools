@@ -6,14 +6,13 @@ getgenv().ImportMacro = {
 }
 getgenv().Config = {
 	["PortalRarity"] = {
-		["Legendary"] = false,
-		["Epic"] = false,
+		["Legendary"] = true,
+		["Epic"] = true,
 		["Rare"] = true,
-		["Mythic"] = false,
+		["Mythic"] = true,
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
-	["UnselectIfSummoned"] = true,
 	["AutoFeedEquippedUnit"] = false,
 	["FeedLevel"] = 1,
 	["AutoJoinPortal"] = false,
@@ -49,13 +48,13 @@ getgenv().Config = {
 	["PlayMacro"] = true,
 	["BlackScreen"] = true,
 	["ABBHopDelay"] = 0,
-	["JoinerCooldown"] = 0,
+	["JoinerCooldown"] = 2,
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
 	["SelectWorld"] = "Windmill Village",
 	["SelectPortal"] = {
-		["Demon Portal"] = false
+		["Demon Portal"] = true
 	},
 	["SelectDeleteRarity"] = {
 		["Shiny Rare"] = true,
@@ -64,7 +63,7 @@ getgenv().Config = {
 	["BoostFPS"] = true,
 	["DeleteMap"] = false,
 	["StandardSummonUnit"] = {
-		["Bloomer"] = true,
+		["Bloomer"] = false,
 		["Chief Of Lava"] = false,
 		["Pink Rockstar"] = false
 	}
