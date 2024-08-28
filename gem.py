@@ -130,12 +130,12 @@ def main():
     # Ask the user to choose between modes
     print("========================================================================================================")
     print(f"Gem Tools v{version} - by @mitbingoo")
-    print("1: Collect Gem Az")
-    print("2: Trade Gem Az")
-    print("3: Autoexec")
+    print("1: Collect Gem")
+    print("2: Send Gem")
     print("4: Create Gem Folders")
+    print("3: Copy autoexec")
     print("5: Update txt files")
-    print("6: Reload")
+    print("6: Reload Code")
     print("7: Quit")
     print(" ")
     mode = int(input("Choose mode: "))
@@ -179,7 +179,19 @@ def main():
             adb_connect_and_copy(adb_path, leader_device, remote_pictures_path, remote_autoexec_path)
         main()  # Call the main function again
 
-    elif mode == 3:  # Farm mode
+    elif mode == 3:
+        create_gem_folders(tools_path)
+        main()  # Call the main function again
+        
+    elif mode== 5:
+        # Clear and write files
+        print("Choose script mode:")
+        print("(X): Use farm(X).txt")
+        script_mode = (input("Enter script mode: "))
+        update_files(tools_path, script_mode)
+        main()
+
+    elif mode == 4:  # Farm mode
         for device in devices:
             print(f"Processing device {device}")
 
@@ -193,18 +205,6 @@ def main():
             clear_remote_directory(adb_path, device, remote_autoexec_path)
             adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
         main()  # Call the main function again
-
-    elif mode == 4:
-        create_gem_folders(tools_path)
-        main()  # Call the main function again
-        
-    elif mode== 5:
-        # Clear and write files
-        print("Choose script mode:")
-        print("(X): Use farm(X).txt")
-        script_mode = (input("Enter script mode: "))
-        update_files(tools_path, script_mode)
-        main()
 
     elif mode == 6:
         main()  # Call the main function again
