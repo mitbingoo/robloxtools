@@ -81,10 +81,10 @@ def create_gem_folders(tools_path):
                 uf.write(response)
             print(f"Created {user_file} for Group {group_number}")
 
-def update_files(tools_path, script_mode):
+def update_files(tools_path, script_name):
     # Define the files to update
     farm_url = (
-        f"https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm{script_mode}.txt"
+        f"https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/farm{script_name}.txt"
     )
     files_to_update = {
         os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
