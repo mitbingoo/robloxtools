@@ -13,7 +13,6 @@ getgenv().Config = {
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
-	["JoinHighest"] = true,
 	["AutoFeedEquippedUnit"] = true,
 	["FeedLevel"] = 80,
 	["AutoJoinPortal"] = true,
