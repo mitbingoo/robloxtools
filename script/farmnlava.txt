@@ -21,7 +21,7 @@ getgenv().Config = {
 	["JoinerList"] = {
 		[1] = "No joiner in the list"
 	},
-	["AutoSummonStandard"] = false,
+	["AutoSummonStandard"] = true,
 	["SelectPortalMacro"] = {
 		["Demon Portal"] = "Macro81Action"
 	},
@@ -62,8 +62,9 @@ getgenv().Config = {
 	},
 	["BoostFPS"] = true,
 	["DeleteMap"] = false,
+	["UnselectIfSummoned"] = false,
 	["StandardSummonUnit"] = {
-		["Bloomer"] = false,
+		["Bloomer"] = true,
 		["Chief Of Lava"] = false,
 		["Pink Rockstar"] = false
 	}
