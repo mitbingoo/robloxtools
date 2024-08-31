@@ -89,7 +89,7 @@ def update_files(tools_path, script_name):
     files_to_update = {
         os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
         os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
-        os.path.join(tools_path, "autoexec", "farm.txt"): farm_url
+        os.path.join(tools_path, "autoexec", "farm.txt"): farm_url,
         os.path.join(tools_path, "macro", "wind.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/wind.json",
         os.path.join(tools_path, "macro", "lava.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/lava.json",
         os.path.join(tools_path, "macro", "portal.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/portal.json"
