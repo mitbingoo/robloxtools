@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "2.0.0"
+version = "2.0.1"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -91,8 +91,8 @@ def update_files(tools_path, script_name):
         os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
         os.path.join(tools_path, "autoexec", "farm.txt"): farm_url,
         os.path.join(tools_path, "macro", "wind.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/wind.json",
-        os.path.join(tools_path, "macro", "lava.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/lava.json",
-        os.path.join(tools_path, "macro", "portal.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/portal.json"
+        os.path.join(tools_path, "macro", "lava.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/lava.json",
+        os.path.join(tools_path, "macro", "portal.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/portal.json"
     }
 
     # Update the files
