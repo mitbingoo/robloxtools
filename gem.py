@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "2.0.1"
+version = "2.0.2"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -229,7 +229,7 @@ def main():
 
             # Move files from@mai remote_pictures_path to remote_autoexec_path
             clear_remote_directory(adb_path, device, remote_macro_path)
-            adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_macro_path)
+            adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
         main()  # Call the main function again
 
 
