@@ -1,16 +1,18 @@
 getgenv().EquipMacroUnit = true
+getgenv().ImportMacro = {
+    "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macro/a.json",
+    "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macro/b.json",
+    "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macro/wind.json",
+}
 getgenv().Config = {
-	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
-	["BlackScreen"] = true,
 	["PortalRarity"] = {
-		["Legendary"] = true,
-		["Epic"] = true,
+		["Legendary"] = false,
+		["Epic"] = false,
 		["Rare"] = true,
-		["Mythic"] = true,
+		["Mythic"] = false,
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
-	["Setx2GameSpeed"] = true,
 	["AutoFeedEquippedUnit"] = true,
 	["FeedLevel"] = 80,
 	["AutoJoinPortal"] = true,
@@ -21,7 +23,7 @@ getgenv().Config = {
 	},
 	["AutoSummonStandard"] = true,
 	["SelectPortalMacro"] = {
-		["Demon Portal"] = "portal"
+		["Demon Portal"] = "Macro81Action"
 	},
 	["AutoLeave"] = true,
 	["LSImplosion"] = 100000,
@@ -29,6 +31,7 @@ getgenv().Config = {
 	["WH_BannerSummoned"] = true,
 	["LeaveSellWave"] = 31,
 	["WHGemItemGotAlt"] = true,
+	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
 	["LSBomb"] = 1,
 	["RequiredGem"] = 3000,
 	["AutoClaimBattlePass"] = true,
@@ -39,12 +42,13 @@ getgenv().Config = {
 	["TPLobbyIfPlayer"] = false,
 	["AutoDeleteUnit"] = true,
 	["IgnoreMacroTiming"] = true,
-	["SelectMacro"] = "wind",
+	["SelectMacro"] = "Macro59Action",
 	["WH_BoothBought"] = true,
 	["AutoJoinWorld"] = true,
 	["PlayMacro"] = true,
+	["BlackScreen"] = true,
 	["ABBHopDelay"] = 0,
-	["JoinerCooldown"] = 15,
+	["JoinerCooldown"] = 0,
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
