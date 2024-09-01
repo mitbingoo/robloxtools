@@ -11,7 +11,7 @@ getgenv().Config = {
 	},
 	["AutoSave"] = true,
 	["Setx2GameSpeed"] = true,
-	["AutoFeedEquippedUnit"] = true,
+	["AutoFeedEquippedUnit"] = false,
 	["FeedLevel"] = 80,
 	["AutoJoinPortal"] = false,
 	["ItemPrice"] = 1,
