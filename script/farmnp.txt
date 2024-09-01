@@ -1,4 +1,4 @@
-
+getgenv().EquipMacroUnit = true
 getgenv().Config = {
 	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
 	["BlackScreen"] = true,
@@ -44,7 +44,7 @@ getgenv().Config = {
 	["AutoJoinWorld"] = true,
 	["PlayMacro"] = true,
 	["ABBHopDelay"] = 0,
-	["JoinerCooldown"] = 0,
+	["JoinerCooldown"] = 7,
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
