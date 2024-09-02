@@ -1,7 +1,7 @@
 getgenv().EquipMacroUnit = true
 getgenv().Config = {
 	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
-	["BlackScreen"] = true,
+	["BlackScreen"] = false,
 	["PortalRarity"] = {
 		["Legendary"] = true,
 		["Epic"] = true,
@@ -11,15 +11,15 @@ getgenv().Config = {
 	},
 	["AutoSave"] = true,
 	["Setx2GameSpeed"] = true,
-	["AutoFeedEquippedUnit"] = true,
+	["AutoFeedEquippedUnit"] = false,
 	["FeedLevel"] = 80,
-	["AutoJoinPortal"] = true,
+	["AutoJoinPortal"] = false,
 	["ItemPrice"] = 1,
 	["WH_MatchComplete"] = true,
 	["JoinerList"] = {
 		[1] = "No joiner in the list"
 	},
-	["AutoSummonStandard"] = true,
+	["AutoSummonStandard"] = false,
 	["SelectPortalMacro"] = {
 		["Demon Portal"] = "portal"
 	},
@@ -27,7 +27,7 @@ getgenv().Config = {
 	["LSImplosion"] = 100000,
 	["LSDelay"] = 0.4,
 	["WH_BannerSummoned"] = true,
-	["LeaveSellWave"] = 31,
+	["LeaveSellWave"] = 100,
 	["WHGemItemGotAlt"] = true,
 	["LSBomb"] = 1,
 	["RequiredGem"] = 3000,
