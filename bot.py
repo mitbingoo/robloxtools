@@ -1,10 +1,15 @@
-import os
 import discord
 from discord.ext import commands
+import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables from .env file
 load_dotenv()
+
+# ... (rest of your imports and bot setup)
+
+# Replace the bot.run line with this:
+bot.run(os.getenv('DISCORD_BOT_TOKEN'))
 
 # Initialize the bot with the command prefix and enable intents
 intents = discord.Intents.default()
@@ -13,7 +18,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 
 # Define the /delete command
 @bot.command()
-async def delete(ctx):
+async def mdel(ctx):
     # Check if the user has the 'Manage Messages' permission
     if ctx.author.guild_permissions.manage_messages:
         # Inform the user that the deletion process has started
@@ -60,5 +65,4 @@ async def mfind(ctx):
     await ctx.send(f"Total number of messages containing 'defeat': {messages_with_defeat}")
     await ctx.send(f"Total number of messages minus those containing 'defeat': {messages_without_defeat}")
 
-# Run the bot with your token from the environment variable
-bot.run(os.getenv('DISCORD_BOT_TOKEN'))
+# Run the bot with your token
