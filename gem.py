@@ -2,8 +2,6 @@ import os
 import shutil
 import subprocess
 import argparse
-import requests
-import psutil
 import time
 version = "2.1.0"
 
