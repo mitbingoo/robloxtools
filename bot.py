@@ -1,23 +1,23 @@
-import discord
-from discord.ext import commands
-import os
-from dotenv import load_dotenv
+import subprocess
+import sys
 
-# Load environment variables from .env file
-load_dotenv()
-
-# ... (rest of your imports and bot setup)
-
-# Replace the bot.run line with this:
-bot.run(os.getenv('DISCORD_BOT_TOKEN'))
+# Check if discord module is installed, install if not
+try:
+    import discord
+    from discord.ext import commands
+except ImportError:
+    print("Discord module not found. Installing...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "discord.py"])
+    import discord
+    from discord.ext import commands
 
 # Initialize the bot with the command prefix and enable intents
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='/', intents=intents)
+bot = commands.Bot(command_prefix='', intents=intents)  # Changed command_prefix from '/' to ''
 
-# Define the /delete command
-@bot.command()
+# Define the mdel command
+@bot.command(name='mdel')  # Changed from /mdel to mdel
 async def mdel(ctx):
     # Check if the user has the 'Manage Messages' permission
     if ctx.author.guild_permissions.manage_messages:
@@ -46,23 +46,5 @@ async def mdel(ctx):
     else:
         await ctx.send("You do not have the required permissions to use this command.")
 
-# Define the /mfind command
-@bot.command()
-async def mfind(ctx):
-    total_messages = 0
-    messages_with_defeat = 0
-
-    # Iterate through the message history in the channel
-    async for message in ctx.channel.history(limit=None):
-        total_messages += 1
-        if "defeat" in message.content.lower():  # Case insensitive search for "defeat"
-            messages_with_defeat += 1
-
-    messages_without_defeat = total_messages - messages_with_defeat
-
-    # Send the results to the channel
-    await ctx.send(f"Total number of messages in this channel: {total_messages}")
-    await ctx.send(f"Total number of messages containing 'defeat': {messages_with_defeat}")
-    await ctx.send(f"Total number of messages minus those containing 'defeat': {messages_without_defeat}")
-
 # Run the bot with your token
+bot.run('')
