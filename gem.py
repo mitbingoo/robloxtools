@@ -7,6 +7,16 @@ import psutil
 import time
 version = "2.1.0"
 
+def install_required_modules():
+    required_modules = ['requests', 'psutil']
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            print(f"{module} is not installed. Installing...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", module])
+            print(f"{module} has been installed successfully.")
+
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
@@ -286,5 +296,7 @@ def main():
         else:
             print("Invalid device number. Please try again.")
         main()  # Call
+
 if __name__ == "__main__":
+    install_required_modules()
     main()
