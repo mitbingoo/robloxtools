@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "1.5.3"
+version = "2.0.2"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -89,15 +89,24 @@ def update_files(tools_path, script_name):
     files_to_update = {
         os.path.join(tools_path, "gem2", "mitbingo.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/mitbingo.txt",
         os.path.join(tools_path, "gemmain", "main.txt"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/script/main.txt",
-        os.path.join(tools_path, "autoexec", "farm.txt"): farm_url
+        os.path.join(tools_path, "autoexec", "farm.txt"): farm_url,
+        os.path.join(tools_path, "macro", "wind.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/wind.json",
+        os.path.join(tools_path, "macro", "lava.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/lava.json",
+        os.path.join(tools_path, "macro", "portal.json"): "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/macros/portal.json"
     }
 
     # Update the files
     for file_path, url in files_to_update.items():
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        
         response = requests.get(url)
         content = response.content.decode('utf-8').replace('\r\n', '\n')  # Decode and replace newline characters
+        
+        # Open file in write mode, which will create it if it doesn't exist
         with open(file_path, 'w') as file:
             file.write(content)
+        
         print(f"Finished updating {url}")
 
 
@@ -134,10 +143,11 @@ def main():
     print("1: Collect Gem")
     print("2: Send Gem")
     print("3: Create Gem Folders")
-    print("4: Copy autoexec")
-    print("5: Update txt files")
-    print("6: Reload Code")
-    print("7: Quit")
+    print("4: Copy Scripts")
+    print("5: Copy Macro")
+    print("6: Update txt files")
+    print("7: Reload Code")
+    print("8: Quit")
     print(" ")
     mode = int(input("Choose mode: "))
 
@@ -184,7 +194,7 @@ def main():
         create_gem_folders(tools_path)
         main()  # Call the main function again
         
-    elif mode== 5:
+    elif mode== 6:
         # Clear and write files
         print("Choose script mode:")
         print("(X): Use farm(X).txt")
@@ -192,7 +202,7 @@ def main():
         update_files(tools_path, script_mode)
         main()
 
-    elif mode == 4:  # Farm mode
+    elif mode == 4:  # Autoexec mode
         for device in devices:
             print(f"Processing device {device}")
 
@@ -207,14 +217,30 @@ def main():
             adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
         main()  # Call the main function again
 
-    elif mode == 6:
+    elif mode == 5:  # Macro mode
+        for device in devices:
+            print(f"Processing device {device}")
+
+            # Clear and prepare the pictures_path on the computer
+            clear_directory(pictures_path)
+
+            # Copy files from Autoexec to pictures_path
+            shutil.copytree(os.path.join(tools_path, "Macro"), pictures_path, dirs_exist_ok=True)
+
+            # Move files from@mai remote_pictures_path to remote_autoexec_path
+            clear_remote_directory(adb_path, device, remote_macro_path)
+            adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
         main()  # Call the main function again
 
+
     elif mode == 7:
+        main()  # Call the main function again
+
+    elif mode == 8:
         print("Goodbye!")
         exit()  # Quit the script
 
-    elif mode == 8:
+    elif mode == 9:
         device_number = int(input("Enter the device number: "))
         if device_number <= len(devices):
             device = devices[device_number - 1]  # Adjust for 0-based indexing

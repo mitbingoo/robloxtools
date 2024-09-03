@@ -3,7 +3,9 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "2.0.2"
+import psutil
+import time
+version = "2.1.0"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -109,6 +111,25 @@ def update_files(tools_path, script_name):
         
         print(f"Finished updating {url}")
 
+def check_current_bandwidth():
+    # Get initial network stats
+    net_io = psutil.net_io_counters()
+    bytes_sent = net_io.bytes_sent
+    bytes_recv = net_io.bytes_recv
+    
+    # Wait for a short period
+    time.sleep(1)
+    
+    # Get updated network stats
+    net_io = psutil.net_io_counters()
+    bytes_sent_new = net_io.bytes_sent
+    bytes_recv_new = net_io.bytes_recv
+    
+    # Calculate bandwidth usage
+    upload_speed = (bytes_sent_new - bytes_sent) / 1024 / 1024  # Convert to MB/s
+    download_speed = (bytes_recv_new - bytes_recv) / 1024 / 1024  # Convert to MB/s
+    
+    return f"Current bandwidth usage: Upload: {upload_speed:.2f} MB/s, Download: {download_speed:.2f} MB/s"
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
@@ -148,6 +169,7 @@ def main():
     print("6: Update txt files")
     print("7: Reload Code")
     print("8: Quit")
+    print("9: Test")
     print(" ")
     mode = int(input("Choose mode: "))
 
@@ -241,6 +263,12 @@ def main():
         exit()  # Quit the script
 
     elif mode == 9:
+        print("Checking current bandwidth usage...")
+        bandwidth_info = check_current_bandwidth()
+        print(bandwidth_info)
+        main()  # Call the main function again
+
+    elif mode == 10:
         device_number = int(input("Enter the device number: "))
         if device_number <= len(devices):
             device = devices[device_number - 1]  # Adjust for 0-based indexing
