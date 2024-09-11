@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "2.2.0"
+version = "2.2.1"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -231,11 +231,6 @@ def main():
 
             # Copy files from Autoexec to pictures_path
             shutil.copytree(os.path.join(tools_path, "Autoexec"), yummy_autoexec_path, dirs_exist_ok=True)
-            shutil.copytree(os.path.join(tools_path, "Macro"), yummy_macro_path, dirs_exist_ok=True)
-
-            # Move files from@mai remote_pictures_path to remote_autoexec_path
-            clear_remote_directory(adb_path, device, remote_autoexec_path)
-            adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
 
         elif mode == 7:
             # Clear and write files
