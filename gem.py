@@ -177,7 +177,6 @@ def main():
                     clear_remote_directory(adb_path, device, remote_autoexec_path)
                     adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
             print("Rerunning script...")
-            main()  # Call the main function again
 
         elif mode == 2:
             for group_number, group in enumerate(groups, start=1):
@@ -193,11 +192,9 @@ def main():
                 # Move files from remote_pictures_path to remote_autoexec_path
                 clear_remote_directory(adb_path, leader_device, remote_autoexec_path)
                 adb_connect_and_copy(adb_path, leader_device, remote_pictures_path, remote_autoexec_path)
-            main()  # Call the main function again
 
         elif mode == 3:
             create_gem_folders(tools_path)
-            main()  # Call the main function again
 
         elif mode == 4:  # Autoexec mode
             for device in devices:
@@ -212,7 +209,6 @@ def main():
                 # Move files from@mai remote_pictures_path to remote_autoexec_path
                 clear_remote_directory(adb_path, device, remote_autoexec_path)
                 adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
-            main()  # Call the main function again
 
         elif mode == 5:  # Macro mode
             for device in devices:
@@ -227,7 +223,6 @@ def main():
                 # Move files from@mai remote_pictures_path to remote_autoexec_path
                 clear_remote_directory(adb_path, device, remote_macro_path)
                 adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
-            main()  # Call the main function again
             
         elif mode == 6:  # Yummy mode
             # Clear and prepare the pictures_path on the computer
@@ -241,18 +236,16 @@ def main():
             # Move files from@mai remote_pictures_path to remote_autoexec_path
             clear_remote_directory(adb_path, device, remote_autoexec_path)
             adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
-        main()  # Call the main function again
 
-        elif mode== 7:
+        elif mode == 7:
             # Clear and write files
             print("Choose script mode:")
             print("(X): Use farm(X).txt")
             script_mode = (input("Enter script mode: "))
             update_files(tools_path, script_mode)
-            main()
 
         elif mode == 8:
-            main()  # Call the main function again
+            print("Reloading script...")
 
         elif mode == 9:
             print("Goodbye!")
@@ -275,6 +268,5 @@ def main():
                 adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
             else:
                 print("Invalid device number. Please try again.")
-            main()  # Call
 if __name__ == "__main__":
     main()
