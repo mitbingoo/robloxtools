@@ -129,6 +129,9 @@ def main():
         remote_autoexec_path = "/sdcard/Delta/Autoexecute/"
         remote_macro_path = "/sdcard/Delta/Workspace/Nousigi Hub/Macro/AnimeDefenders/"
 
+        yummy_autoexec_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummy", "Emulator", "autoexec")
+        yummy_macro_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummy", "Emulator", "workspace", "Nousigi Hub", "Macro", "AnimeDefenders")
+
         # Get available adb devices
         devices = get_available_devices(adb_path)
 
@@ -146,9 +149,10 @@ def main():
         print("3: Create Gem Folders")
         print("4: Copy Scripts")
         print("5: Copy Macro")
-        print("6: Update txt files")
-        print("7: Reload Code")
-        print("8: Quit")
+        print("6: Copy Yummy")
+        print("7: Update txt files")
+        print("8: Reload Code")
+        print("9: Quit")
         print(" ")
         mode = int(input("Choose mode: "))
 
@@ -194,14 +198,6 @@ def main():
         elif mode == 3:
             create_gem_folders(tools_path)
             main()  # Call the main function again
-            
-        elif mode== 6:
-            # Clear and write files
-            print("Choose script mode:")
-            print("(X): Use farm(X).txt")
-            script_mode = (input("Enter script mode: "))
-            update_files(tools_path, script_mode)
-            main()
 
         elif mode == 4:  # Autoexec mode
             for device in devices:
@@ -232,16 +228,37 @@ def main():
                 clear_remote_directory(adb_path, device, remote_macro_path)
                 adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
             main()  # Call the main function again
+            
+        elif mode == 6:  # Yummy mode
+            # Clear and prepare the pictures_path on the computer
+            clear_directory(yummy_autoexec_path)
+            clear_directory(yummy_macro_path)
 
+            # Copy files from Autoexec to pictures_path
+            shutil.copytree(os.path.join(tools_path, "Autoexec"), yummy_autoexec_path, dirs_exist_ok=True)
+            shutil.copytree(os.path.join(tools_path, "Macro"), yummy_macro_path, dirs_exist_ok=True)
 
-        elif mode == 7:
-            main()  # Call the main function again
+            # Move files from@mai remote_pictures_path to remote_autoexec_path
+            clear_remote_directory(adb_path, device, remote_autoexec_path)
+            adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
+        main()  # Call the main function again
+
+        elif mode== 7:
+            # Clear and write files
+            print("Choose script mode:")
+            print("(X): Use farm(X).txt")
+            script_mode = (input("Enter script mode: "))
+            update_files(tools_path, script_mode)
+            main()
 
         elif mode == 8:
+            main()  # Call the main function again
+
+        elif mode == 9:
             print("Goodbye!")
             exit()  # Quit the script
 
-        elif mode == 9:
+        elif mode == 10:
             device_number = int(input("Enter the device number: "))
             if device_number <= len(devices):
                 device = devices[device_number - 1]  # Adjust for 0-based indexing
