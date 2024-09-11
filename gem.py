@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import argparse
 import requests
-version = "2.2.1"
+version = "2.2.2"
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -129,8 +129,8 @@ def main():
         remote_autoexec_path = "/sdcard/Delta/Autoexecute/"
         remote_macro_path = "/sdcard/Delta/Workspace/Nousigi Hub/Macro/AnimeDefenders/"
 
-        yummy_autoexec_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummy", "Emulator", "autoexec")
-        yummy_macro_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummy", "Emulator", "workspace", "Nousigi Hub", "Macro", "AnimeDefenders")
+        yummy_autoexec_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummyemu", "Emulator", "autoexec")
+        yummy_macro_path = args.pictures_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "Yummyemu", "Emulator", "workspace", "Nousigi Hub", "Macro", "AnimeDefenders")
 
         # Get available adb devices
         devices = get_available_devices(adb_path)
@@ -231,6 +231,7 @@ def main():
 
             # Copy files from Autoexec to pictures_path
             shutil.copytree(os.path.join(tools_path, "Autoexec"), yummy_autoexec_path, dirs_exist_ok=True)
+            shutil.copytree(os.path.join(tools_path, "macro"), yummy_macro_path, dirs_exist_ok=True)
 
         elif mode == 7:
             # Clear and write files
