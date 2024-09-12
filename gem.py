@@ -5,7 +5,7 @@ import sys
 import argparse
 import psutil
 
-version = "2.3.3"
+version = "2.3.4"
 
 import subprocess
 import sys
