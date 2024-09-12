@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import argparse
 import random
+import psutil
 
 version = "2.4.2"
 
