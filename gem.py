@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import sys
 import argparse
-import psutil
 
 version = "2.3.4"
 
