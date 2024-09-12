@@ -4,17 +4,15 @@ import subprocess
 import argparse
 version = "2.3.0"
 
-def install_required_modules():
-    required_modules = ['requests', 'psutil']
-    for module in required_modules:
-        try:
-            __import__(module)
-        except ImportError:
-            print(f"{module} is not installed. Installing now...")
-            subprocess.check_call([sys.executable, "-m", "pip", "install", module])
-    
-    # After installation, import the modules
-    global requests, psutil
+def install_modules():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "psutil"])
+
+try:
+    import requests
+    import psutil
+except ImportError:
+    print("Required modules not found. Installing...")
+    install_modules()
     import requests
     import psutil
 
@@ -169,7 +167,6 @@ def parse_arguments():
 
 
 def main():    
-    install_required_modules()
     while True:
         args = parse_arguments()
         adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"

@@ -3,15 +3,17 @@ import sys
 import time
 import requests
 
-def install_request():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+def install_modules():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "psutil"])
 
 try:
     import requests
+    import psutil
 except ImportError:
-    print("Requests module not found. Installing...")
-    install_request()
+    print("Required modules not found. Installing...")
+    install_modules()
     import requests
+    import psutil
 
 def get_password():
     url = "https://raw.githubusercontent.com/mitbingoo/robloxtools/main/backup/ps.txt"
