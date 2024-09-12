@@ -8,25 +8,28 @@ import subprocess
 import sys
 
 # List of required modules
-required_modules = ['requests', 'psutil']
+required_modules = [
+    'requests',  # Example module
+    'psutil',     # Example module
+    # Add other required modules here
+]
 
-def install_and_import(module):
+def install_and_import(module_name):
     try:
-        __import__(module)
+        __import__(module_name)
     except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", module])
+        print(f"Module {module_name} not found. Installing...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", module_name])
+        print(f"Module {module_name} installed successfully.")
     finally:
-        globals()[module] = __import__(module)
+        globals()[module_name] = __import__(module_name)
 
+# Install and import all required modules
 for module in required_modules:
     install_and_import(module)
 
-# Your main script code goes here
-import requests
-import psutil
-
+# Your script logic goes here
 print("All required modules are installed and imported.")
-print(np.array([1, 2, 3]))
 
 def clear_directory(path):
     if os.path.exists(path):
