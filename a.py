@@ -1,7 +1,6 @@
 import subprocess
 import sys
 import time
-import requests
 
 def install_modules():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "psutil"])
