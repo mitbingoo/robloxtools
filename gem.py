@@ -2,11 +2,10 @@ import os
 import shutil
 import subprocess
 import argparse
-<<<<<<< HEAD
-version = "2.3.2"
-=======
 import psutil
->>>>>>> 86a6c869fe70a212b5254ea4a238dc668b3b8772
+
+version = "2.3.3"
+
 
 def clear_directory(path):
     if os.path.exists(path):
