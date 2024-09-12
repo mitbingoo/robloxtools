@@ -2,8 +2,21 @@ import os
 import shutil
 import subprocess
 import argparse
-import requests
-version = "2.2.2"
+version = "2.3.0"
+
+def install_required_modules():
+    required_modules = ['requests', 'psutil']
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            print(f"{module} is not installed. Installing now...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", module])
+    
+    # After installation, import the modules
+    global requests, psutil
+    import requests
+    import psutil
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -119,6 +132,7 @@ def parse_arguments():
 
 
 def main():    
+    install_required_modules()
     while True:
         args = parse_arguments()
         adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
@@ -146,13 +160,10 @@ def main():
         print(f"Gem Tools v{version} - by @mitbingoo")
         print("1: Collect Gem")
         print("2: Send Gem")
-        print("3: Create Gem Folders")
-        print("4: Copy Scripts")
-        print("5: Copy Macro")
-        print("6: Copy Yummy")
-        print("7: Update txt files")
-        print("8: Reload Code")
-        print("9: Quit")
+        print("3: Create Gem Files")
+        print("4: Copy Yummy Filess")
+        print("5: Update Txt Files")
+        print("6: Reload Code")
         print(" ")
         mode = int(input("Choose mode: "))
 
@@ -195,36 +206,8 @@ def main():
 
         elif mode == 3:
             create_gem_folders(tools_path)
-
-        elif mode == 4:  # Autoexec mode
-            for device in devices:
-                print(f"Processing device {device}")
-
-                # Clear and prepare the pictures_path on the computer
-                clear_directory(pictures_path)
-
-                # Copy files from Autoexec to pictures_path
-                shutil.copytree(os.path.join(tools_path, "Autoexec"), pictures_path, dirs_exist_ok=True)
-
-                # Move files from@mai remote_pictures_path to remote_autoexec_path
-                clear_remote_directory(adb_path, device, remote_autoexec_path)
-                adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
-
-        elif mode == 5:  # Macro mode
-            for device in devices:
-                print(f"Processing device {device}")
-
-                # Clear and prepare the pictures_path on the computer
-                clear_directory(pictures_path)
-
-                # Copy files from Autoexec to pictures_path
-                shutil.copytree(os.path.join(tools_path, "Macro"), pictures_path, dirs_exist_ok=True)
-
-                # Move files from@mai remote_pictures_path to remote_autoexec_path
-                clear_remote_directory(adb_path, device, remote_macro_path)
-                adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
             
-        elif mode == 6:  # Yummy mode
+        elif mode == 4:  # Yummy mode
             # Clear and prepare the pictures_path on the computer
             clear_directory(yummy_autoexec_path)
             clear_directory(yummy_macro_path)
@@ -233,21 +216,17 @@ def main():
             shutil.copytree(os.path.join(tools_path, "Autoexec"), yummy_autoexec_path, dirs_exist_ok=True)
             shutil.copytree(os.path.join(tools_path, "macro"), yummy_macro_path, dirs_exist_ok=True)
 
-        elif mode == 7:
+        elif mode == 5:
             # Clear and write files
             print("Choose script mode:")
             print("(X): Use farm(X).txt")
             script_mode = (input("Enter script mode: "))
             update_files(tools_path, script_mode)
 
-        elif mode == 8:
+        elif mode == 6:
             print("Reloading script...")
 
-        elif mode == 9:
-            print("Goodbye!")
-            exit()  # Quit the script
-
-        elif mode == 10:
+        elif mode == 99:
             device_number = int(input("Enter the device number: "))
             if device_number <= len(devices):
                 device = devices[device_number - 1]  # Adjust for 0-based indexing
@@ -264,5 +243,34 @@ def main():
                 adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
             else:
                 print("Invalid device number. Please try again.")
+
+        elif mode == 100:  # Autoexec mode
+            for device in devices:
+                print(f"Processing device {device}")
+
+                # Clear and prepare the pictures_path on the computer
+                clear_directory(pictures_path)
+
+                # Copy files from Autoexec to pictures_path
+                shutil.copytree(os.path.join(tools_path, "Autoexec"), pictures_path, dirs_exist_ok=True)
+
+                # Move files from@mai remote_pictures_path to remote_autoexec_path
+                clear_remote_directory(adb_path, device, remote_autoexec_path)
+                adb_connect_and_copy(adb_path, device, remote_pictures_path, remote_autoexec_path)
+
+        elif mode == 101:  # Macro mode
+            for device in devices:
+                print(f"Processing device {device}")
+
+                # Clear and prepare the pictures_path on the computer
+                clear_directory(pictures_path)
+
+                # Copy files from Autoexec to pictures_path
+                shutil.copytree(os.path.join(tools_path, "Macro"), pictures_path, dirs_exist_ok=True)
+
+                # Move files from@mai remote_pictures_path to remote_autoexec_path
+                clear_remote_directory(adb_path, device, remote_macro_path)
+                adb_connect_and_copy(adb_path, device, remote_pictures_path, f"'{remote_macro_path}'")
+
 if __name__ == "__main__":
     main()
