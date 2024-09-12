@@ -4,7 +4,7 @@ import subprocess
 import argparse
 import random
 
-version = "2.4.0"
+version = "2.4.1"
 
 import subprocess
 import sys
@@ -263,8 +263,18 @@ def main():
             # Name of LDPlayer instances as they appear in the process list
             ldplayer_process_name = "Ld9BoxHeadless"
 
-            # Set CPU affinity for LDPlayer instances
-            set_cpu_affinity(ldplayer_process_name, instances_per_group, cores_per_group)
+            def cpu_affinity_loop():
+                while True:
+                    set_cpu_affinity(ldplayer_process_name, instances_per_group, cores_per_group)
+                    time.sleep(60)
+
+            # Start the CPU affinity loop in a separate thread
+            import threading
+            affinity_thread = threading.Thread(target=cpu_affinity_loop)
+            affinity_thread.daemon = True
+            affinity_thread.start()
+
+            print("CPU affinity will be set every 120 seconds. Select mode 6 again to change values.")
 
         elif mode == 7:
             print("Reloading script...")
