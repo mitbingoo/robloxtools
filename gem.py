@@ -122,6 +122,43 @@ def update_files(tools_path, script_name):
         
         print(f"Finished updating {url}")
 
+def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
+    # Get all running processes
+    processes = psutil.process_iter(['pid', 'name'])
+    ldplayer_instances = [p for p in processes if instance_name in p.info['name']]
+
+    # Sort instances by PID to maintain consistency
+    ldplayer_instances.sort(key=lambda p: p.info['pid'])
+
+    total_instances = len(ldplayer_instances)
+
+    if total_instances == 0:
+        print("No instances found. Make sure the process name is correct.")
+        return
+    
+    if total_instances < instances_per_group:
+        print(f"Found only {total_instances} instances. Group size is larger than the number of available instances.")
+        return
+
+    # Loop through the instances and assign cores
+    core_count = psutil.cpu_count(logical=True)
+    print(f"Total available CPU cores: {core_count}")
+
+    for i in range(0, total_instances, instances_per_group):
+        core_start = (i // instances_per_group * cores_per_group) % core_count
+        core_end = core_start + cores_per_group
+        
+        # Adjust the core assignment to wrap around if needed
+        cores = list(range(core_start, min(core_end, core_count)))
+        print(f"Assigning instances {i+1} to {i+instances_per_group} to cores {cores}")
+
+        # Assign the selected core group to the current batch of instances
+        for j in range(i, min(i + instances_per_group, total_instances)):
+            try:
+                ldplayer_instances[j].cpu_affinity(cores)
+                print(f"Assigned instance {ldplayer_instances[j].info['pid']} to cores {cores}")
+            except psutil.AccessDenied:
+                print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
@@ -161,8 +198,9 @@ def main():
         print("1: Collect Gem")
         print("2: Send Gem")
         print("3: Create Gem Files")
-        print("4: Copy Yummy Filess")
+        print("4: Copy Yummy Files")
         print("5: Update Txt Files")
+        print("6: Set Cores")
         print("6: Reload Code")
         print(" ")
         mode = int(input("Choose mode: "))
@@ -224,6 +262,16 @@ def main():
             update_files(tools_path, script_mode)
 
         elif mode == 6:
+            instances_per_group = int(input("Enter the number of instances per group (X): "))
+            cores_per_group = int(input("Enter the number of cores per group (Y): "))
+
+            # Name of LDPlayer instances as they appear in the process list
+            ldplayer_process_name = "Ld9BoxHeadless"
+
+            # Set CPU affinity for LDPlayer instances
+            set_cpu_affinity(ldplayer_process_name, instances_per_group, cores_per_group)
+
+        elif mode == 7:
             print("Reloading script...")
 
         elif mode == 99:
