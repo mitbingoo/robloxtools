@@ -5,7 +5,7 @@ import argparse
 import random
 import psutil
 
-version = "2.4.2"
+version = "2.4.3"
 
 import subprocess
 import sys
@@ -134,7 +134,7 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
         return
 
     # Randomize the order of instances
-    random.shuffle(ldplayer_instances)
+    # random.shuffle(ldplayer_instances)
 
     # Loop through the instances and assign cores
     core_count = psutil.cpu_count(logical=True)
