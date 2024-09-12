@@ -4,7 +4,7 @@ import subprocess
 import argparse
 import random
 
-version = "2.4.1"
+version = "2.4.2"
 
 import subprocess
 import sys
@@ -138,6 +138,7 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
     # Loop through the instances and assign cores
     core_count = psutil.cpu_count(logical=True)
     print(f"Total available CPU cores: {core_count}")
+    print(f"Found {total_instances} processes")
 
     for i in range(0, total_instances, instances_per_group):
         core_start = (i // instances_per_group * cores_per_group) % core_count
@@ -145,15 +146,15 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
         
         # Adjust the core assignment to wrap around if needed
         cores = list(range(core_start, min(core_end, core_count)))
-        print(f"Assigning instances {i+1} to {i+instances_per_group} to cores {cores}")
+        # print(f"Assigning instances {i+1} to {i+instances_per_group} to cores {cores}")
 
         # Assign the selected core group to the current batch of instances
         for j in range(i, min(i + instances_per_group, total_instances)):
             try:
                 ldplayer_instances[j].cpu_affinity(cores)
-                print(f"Assigned instance {ldplayer_instances[j].info['pid']} to cores {cores}")
+                # print(f"Assigned instance {ldplayer_instances[j].info['pid']} to cores {cores}")
             except psutil.AccessDenied:
-                print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
+                # print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
 
 
 def parse_arguments():
@@ -181,14 +182,14 @@ def main():
         # Get available adb devices
         devices = get_available_devices(adb_path)
 
-        print("========================================================================================================")
+        print("_________________________________________________________________________________________________________")
         # Assign devices to groups
         groups = sort_groups(devices)
         for group_number, group in enumerate(groups, start=1):
             print(f"Group {group_number}: {', '.join(group)}")
 
         # Ask the user to choose between modes
-        print("========================================================================================================")
+        print("_________________________________________________________________________________________________________")
         print(f"Gem Tools v{version} - by @mitbingoo")
         print("1: Collect Gem")
         print("2: Send Gem")
@@ -266,7 +267,10 @@ def main():
             def cpu_affinity_loop():
                 while True:
                     set_cpu_affinity(ldplayer_process_name, instances_per_group, cores_per_group)
-                    time.sleep(60)
+                    print("")
+                    print("--------[Waiting for next function]--------")
+                    print("")
+                    time.sleep(120)
 
             # Start the CPU affinity loop in a separate thread
             import threading
