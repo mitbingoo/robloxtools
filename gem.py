@@ -278,7 +278,7 @@ def main():
             affinity_thread = threading.Thread(target=cpu_affinity_loop)
             affinity_thread.daemon = True
             affinity_thread.start()
-
+        
             print("CPU affinity will be set every 120 seconds. Select mode 6 again to change values.")
 
         elif mode == 7:
