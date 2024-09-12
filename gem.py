@@ -4,7 +4,7 @@ import subprocess
 import sys
 import argparse
 
-version = "2.3.4"
+version = "2.3.5"
 
 import subprocess
 import sys
