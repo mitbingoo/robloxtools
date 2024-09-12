@@ -3,9 +3,8 @@ import shutil
 import subprocess
 import argparse
 import random
-import psutil
 
-version = "2.4.2"
+version = "2.4.1"
 
 import subprocess
 import sys
@@ -157,6 +156,7 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
             except psutil.AccessDenied:
                 # print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
 
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
     parser.add_argument("--adb-path", help="Path to adb executable")
@@ -182,14 +182,14 @@ def main():
         # Get available adb devices
         devices = get_available_devices(adb_path)
 
-        print("_________________________________________________________________________________________________________")
+        print("========================================================================================================")
         # Assign devices to groups
         groups = sort_groups(devices)
         for group_number, group in enumerate(groups, start=1):
             print(f"Group {group_number}: {', '.join(group)}")
 
         # Ask the user to choose between modes
-        print("_________________________________________________________________________________________________________")
+        print("========================================================================================================")
         print(f"Gem Tools v{version} - by @mitbingoo")
         print("1: Collect Gem")
         print("2: Send Gem")
