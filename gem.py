@@ -1,10 +1,10 @@
 import os
 import shutil
 import subprocess
-import sys
 import argparse
+import random
 
-version = "2.3.5"
+version = "2.4.0"
 
 import subprocess
 import sys
@@ -132,6 +132,9 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
         print(f"Found only {total_instances} instances. Group size is larger than the number of available instances.")
         return
 
+    # Randomize the order of instances
+    random.shuffle(ldplayer_instances)
+
     # Loop through the instances and assign cores
     core_count = psutil.cpu_count(logical=True)
     print(f"Total available CPU cores: {core_count}")
@@ -151,6 +154,7 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
                 print(f"Assigned instance {ldplayer_instances[j].info['pid']} to cores {cores}")
             except psutil.AccessDenied:
                 print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
