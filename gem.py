@@ -157,7 +157,6 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
             except psutil.AccessDenied:
                 # print(f"Access denied to change affinity for instance {ldplayer_instances[j].info['pid']}")
 
-
 def parse_arguments():
     parser = argparse.ArgumentParser(description="ADB Device Management Script")
     parser.add_argument("--adb-path", help="Path to adb executable")
