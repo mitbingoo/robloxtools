@@ -1,10 +1,31 @@
 import os
 import shutil
 import subprocess
+import sys
 import argparse
 import psutil
 
 version = "2.3.3"
+
+import subprocess
+import sys
+
+def install_modules():
+    # Use the same Python interpreter that runs this script to install modules
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "psutil"])
+
+try:
+    import requests
+    import psutil
+except ImportError:
+    print("Required modules not found. Installing within the current environment...")
+    install_modules()
+
+    # Retry imports after installation
+    import requests
+    import psutil
+
+print("Modules are installed in the correct environment and ready to use.")
 
 
 def clear_directory(path):
