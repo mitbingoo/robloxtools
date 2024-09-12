@@ -152,7 +152,7 @@ def set_cpu_affinity(instance_name, instances_per_group, cores_per_group):
         # Assign the selected core group to the current batch of instances
         for j in range(i, min(i + instances_per_group, total_instances)):
             ldplayer_instances[j].cpu_affinity(cores)
-            #try:
+            # try:
                 # ldplayer_instances[j].cpu_affinity(cores)
                 # print(f"Assigned instance {ldplayer_instances[j].info['pid']} to cores {cores}")
             # except psutil.AccessDenied:
