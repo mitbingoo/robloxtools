@@ -183,15 +183,15 @@ def main():
         # Get available adb devices
         devices = get_available_devices(adb_path)
 
-        print("_________________________________________________________________________________________________________")
+        print("--------------------------------------------------------------------------------------------------------")
         # Assign devices to groups
         groups = sort_groups(devices)
         for group_number, group in enumerate(groups, start=1):
             print(f"Group {group_number}: {', '.join(group)}")
 
         # Ask the user to choose between modes
-        print("_________________________________________________________________________________________________________")
-        print(f"Gem Tools v{version} - by @mitbingoo")
+        print("--------------------------------------------------------------------------------------------------------")
+        print(f"Gem Tools v{version} - by .mitbingo")
         print("1: Collect Gem")
         print("2: Send Gem")
         print("3: Create Gem Files")
