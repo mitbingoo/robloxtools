@@ -4,17 +4,29 @@ import subprocess
 import argparse
 version = "2.3.0"
 
-def install_modules():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests", "psutil"])
+import subprocess
+import sys
 
-try:
-    import requests
-    import psutil
-except ImportError:
-    print("Required modules not found. Installing...")
-    install_modules()
-    import requests
-    import psutil
+# List of required modules
+required_modules = ['requests', 'psutil']
+
+def install_and_import(module):
+    try:
+        __import__(module)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", module])
+    finally:
+        globals()[module] = __import__(module)
+
+for module in required_modules:
+    install_and_import(module)
+
+# Your main script code goes here
+import requests
+import psutil
+
+print("All required modules are installed and imported.")
+print(np.array([1, 2, 3]))
 
 def clear_directory(path):
     if os.path.exists(path):
