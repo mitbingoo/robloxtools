@@ -4,29 +4,6 @@ import subprocess
 import argparse
 version = "2.3.0"
 
-import subprocess
-import sys
-
-# List of required modules
-required_modules = [
-    'requests',  # Example module
-    'psutil',     # Example module
-    # Add other required modules here
-]
-
-def install_and_import(module_name):
-    try:
-        __import__(module_name)
-    except ImportError:
-        print(f"Module {module_name} not found. Installing...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", module_name])
-        print(f"Module {module_name} installed successfully.")
-    finally:
-        globals()[module_name] = __import__(module_name)
-
-# Your script logic goes here
-print("All required modules are installed and imported.")
-
 def clear_directory(path):
     if os.path.exists(path):
         shutil.rmtree(path)
@@ -179,9 +156,6 @@ def parse_arguments():
 
 def main():   
     while True:
-        for module in required_modules:
-            install_and_import(module) 
-
         args = parse_arguments()
         adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
         tools_path = args.tools_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "tools")
