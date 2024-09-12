@@ -2,8 +2,11 @@ import os
 import shutil
 import subprocess
 import argparse
+<<<<<<< HEAD
+version = "2.3.2"
+=======
 import psutil
-version = "2.3.1"
+>>>>>>> 86a6c869fe70a212b5254ea4a238dc668b3b8772
 
 def clear_directory(path):
     if os.path.exists(path):
@@ -187,7 +190,7 @@ def main():
         print("4: Copy Yummy Files")
         print("5: Update Txt Files")
         print("6: Set Cores")
-        print("6: Reload Code")
+        print("7: Reload Code")
         print(" ")
         mode = int(input("Choose mode: "))
 
