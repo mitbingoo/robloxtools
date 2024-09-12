@@ -24,10 +24,6 @@ def install_and_import(module_name):
     finally:
         globals()[module_name] = __import__(module_name)
 
-# Install and import all required modules
-for module in required_modules:
-    install_and_import(module)
-
 # Your script logic goes here
 print("All required modules are installed and imported.")
 
@@ -181,8 +177,11 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def main():    
+def main():   
     while True:
+        for module in required_modules:
+            install_and_import(module) 
+
         args = parse_arguments()
         adb_path = args.adb_path or r"C:\LDPlayer\LDPlayer9\adb.exe"
         tools_path = args.tools_path or os.path.join(os.environ['USERPROFILE'], "Downloads", "tools")
