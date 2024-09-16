@@ -1,12 +1,12 @@
 getgenv().EquipMacroUnit = true
 getgenv().Config = {
-	["WebhookURL"] = "https://discord.com/api/webhooks/1275103699294752810/C6eq-9pgpESlxh1_mg7Tm2N7s7sSbTzObrRe7G4NPGfJyodT-BvogRgd8j9V6Bk5iZwG",
+	["WebhookURL"] = "https://discord.com/api/webhooks/1277844808676933673/q9wzYyEWUIWcOIHaC-Ao3hz6MFogkJ7UQ4B1SuoqSjCEfRi-XSH55KY3bfr4mWaW1e4o",
 	["BlackScreen"] = true,
 	["PortalRarity"] = {
 		["Legendary"] = false,
 		["Epic"] = false,
 		["Rare"] = true,
-		["Mythic"] = false
+		["Mythic"] = fase,
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
@@ -66,7 +66,6 @@ getgenv().Config = {
 }
 getgenv().Key = "k501fa5a2a345a2e12e5b3bd"
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until Joebiden
-
 
 
 
