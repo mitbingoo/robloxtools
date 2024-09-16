@@ -6,7 +6,7 @@ getgenv().Config = {
 		["Legendary"] = false,
 		["Epic"] = false,
 		["Rare"] = true,
-		["Mythic"] = false,
+		["Mythic"] = false
 		["Secret"] = false
 	},
 	["AutoSave"] = true,
@@ -44,7 +44,7 @@ getgenv().Config = {
 	["AutoJoinWorld"] = true,
 	["PlayMacro"] = true,
 	["ABBHopDelay"] = 0,
-	["JoinerCooldown"] = 15,
+	["JoinerCooldown"] = 7,
 	["SelectChapter"] = "Infinite",
 	["AutoReturnLobby"] = true,
 	["LSLoop"] = 2,
