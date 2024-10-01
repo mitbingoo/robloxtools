@@ -64,7 +64,7 @@ getgenv().Config = {
 		["Pink Rockstar"] = false
 	}
 }
-getgenv().Key = "k501fa5a2a345a2e12e5b3bd"
+getgenv().Key = "kf3cd9a8d34ed398e22f7cf0"
 repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until Joebiden
 
 
