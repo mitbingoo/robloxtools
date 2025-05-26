@@ -4,6 +4,6 @@ local b = p:WaitForChild("Backpack")
 
 while true do
 	local t = b:FindFirstChildOfClass("Tool")
-	if t then h:EquipTool(t) wait(2) h:UnequipTools() end
-	wait(10)
+	if t then h:EquipTool(t) wait(0.5) h:UnequipTools() end
+	wait(60)
 end
